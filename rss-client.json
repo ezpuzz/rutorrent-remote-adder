@@ -1,0 +1,29 @@
+{
+  "name": "rss-client",
+  "bpm": "1.0.0",
+  "bpm:build": {
+    "bpm_libs.js": {
+      "files": [
+        "lib"
+      ]
+    },
+    "bpm_styles.css": {
+      "files": [
+        "css"
+      ]
+    },
+    "rss-client/bpm_tests.js": {
+      "files": [
+        "spec"
+      ]
+    }
+  },
+  "dependencies": {
+    "coffee-script": ">= 0",
+    "jquery": ">= 0"
+  },
+  "dependencies:development": {
+    "jasmine": ">= 0",
+    "jasmine-jquery": ">= 0"
+  }
+}
