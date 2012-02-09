@@ -2,13 +2,12 @@ saber-addtorrent, add torrent to rutorrent inside PT's websites directly.
 ================================================================
 
 | Homepage:      |  https://github.com/GutenYe/saber-addtorrent       |
-|----------------|------------------------------------------------------       |
-| Author:	       | GutenYe                                                 |
-| License:       | MIT-LICENSE                                                |
-| Documentation: | http://rubydoc.info/gems/saber-addtorrent/frames                |
+|----------------|----------------------------------------------------|
+| Author:	       | Guten                                              |
+| License:       | MIT-LICENSE                                        |
 | Issue Tracker: | https://github.com/GutenYe/saber-addtorrent/issues |
 
-This is a part of [Saber](http://github.com/GutenYe/saber) project, but you can use this standalone.
+This is a part of the [Saber](http://github.com/GutenYe/saber) project, but you can use this standalone.
 
 ### Is It Good?
 
@@ -21,7 +20,14 @@ No.
 Getting started
 ---------------
 
-  how to use
+### what is it?
+
+it adds two saber icon in what.cd, click each one will directy add the torrent file to rutorrent with label "saber" and "saber1".
+
+![Alt text](http://i.imgur.com/lyacO.jpg what.cd)
+
+
+current support websites: What, PTP, BTN, SCC
 
 Install
 -------
@@ -36,7 +42,6 @@ Note on Patches/Pull Requests
 3. Add tests for it. This is important so I don't break it in a future version unintentionally.
 4. Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 5. Send me a pull request. Bonus points for topic branches.
-6. Coding Style Guide: https://gist.github.com/1105334
 
 Credits
 -------
@@ -60,7 +65,7 @@ Copyright
 
 (the MIT License)
 
-Copyright (c) 2011 GutenYe
+Copyright (c) 2011 Guten
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
