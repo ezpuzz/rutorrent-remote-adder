@@ -1,6 +1,7 @@
 task :build do
   run "coffee -c --bare -o tmp lib"
   run "cat tmp/*.js > output/saber-addtorrent.user.js"
+  run "sed -n '1,/UserScript/p' output/saber-addtorrent.user.js > output/saber-addtorrent.meta.js"
 end
 
 task :watch do
