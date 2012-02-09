@@ -1,8 +1,10 @@
-# rss-client
+### Is It Good?
 
-prepare fixtures. 
+Yes.
 
-what.cd: download http://what.cd/torrents.php into spec/fixtures/what.html
+### Is It "Production Ready™"?
+
+No.
 
 
 Setup develop environmebt 
