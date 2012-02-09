@@ -45,6 +45,7 @@ Setup Development/Test Environment
 
 run test
 
+	$ bundle install
 	$ mkdir tmp assets
 	$ cd assets && ln -s ../spec/fixtures spec_fixtures
 	$ rake server
@@ -68,7 +69,9 @@ Credits
 Resources
 ---------
 
+* [saber](https://github.com/GutenYe/saber): the ultimate tool for PT
 * [bpm](https://github.com/bpm/bpm): Browser Package Manager 
+* [bundler](https://github.com/carlhuda/bundler): Manage your application's gem dependencies with less pain 
 
 Copyright
 ---------

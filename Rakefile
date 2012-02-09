@@ -15,4 +15,3 @@ def run(cmd)
   puts cmd
   system cmd
 end
-
