@@ -38,7 +38,8 @@ At the end of the website click the 'saber-addtorrent configuratin' button. afte
 Install
 -------
 
-click Install at http://userscripts.org/scripts/show/125293
+1. firefox: install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish) addon. 
+2. click Install at http://userscripts.org/scripts/show/125293
 
 Setup Development/Test Environment 
 --------------------------
