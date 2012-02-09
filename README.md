@@ -33,7 +33,7 @@ It adds two saber icons in the website, click each one will directy add the torr
 
 ### Configuration
 
-at the end of the website click 'saber-addtorrent configuratin' button. 
+At the end of the website click the 'saber-addtorrent configuratin' button. after save, refresh the website.
 
 Install
 -------
