@@ -7,7 +7,7 @@ saber-addtorrent, add torrent to rutorrent inside PT's websites directly.
 | License:       | MIT-LICENSE                                        |
 | Issue Tracker: | https://github.com/GutenYe/saber-addtorrent/issues |
 
-This is a part of the [Saber](http://github.com/GutenYe/saber) project, but you can use this standalone.
+This is a part of the [Saber](https://github.com/GutenYe/saber) project, but you can use this standalone.
 
 Current support websites: What, PTP, BTN, SCC
 
@@ -47,8 +47,9 @@ run test
 
 	$ bundle install
 	$ mkdir tmp assets
-	$ cd assets && ln -s ../spec/fixtures spec_fixtures
-	$ rake server
+	$ cd assets && ln -s ../spec/fixtures spec_fixtures && cd..
+	# save a fixture into spec/fixtures/what.html from http://what.cd/torrent.php
+	$ bpm preview
 	# goto localhost:4020/assets/jasmine/index.html?package=saber-addtorrent
 	
 
