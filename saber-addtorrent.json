@@ -12,7 +12,7 @@
         "css"
       ]
     },
-    "rss-client/bpm_tests.js": {
+    "saber-addtorrent/bpm_tests.js": {
       "files": [
         "spec"
       ]
@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "coffee-script": ">= 0",
-    "jquery": ">= 0"
+    "jquery": ">= 0",
+    "gm_config": ">= 0"
   },
   "dependencies:development": {
     "jasmine": ">= 0",

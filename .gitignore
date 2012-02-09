@@ -1,7 +1,6 @@
 .bpm
 *.bpkg
-/assets/*.js
-/assets/*.css
 /vendor
 /spec/fixtures/*
-/output/*
+/tmp
+/assets
