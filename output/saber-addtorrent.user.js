@@ -47,6 +47,7 @@ Saber = (function() {
 
   Saber.fire = function() {
     var setting;
+    pd("fire");
     setting = $("<button>saber-addtorrent configuration</button>");
     setting.appendTo($("body"));
     return setting.bind("click", function() {

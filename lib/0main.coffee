@@ -42,6 +42,7 @@ img.rssimg { cursor: pointer; }
 
 class Saber
   @fire: ->
+    pd "fire"
     setting = $("<button>saber-addtorrent configuration</button>") 
     setting.appendTo($("body"))
     setting.bind "click", ->

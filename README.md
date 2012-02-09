@@ -9,6 +9,8 @@ saber-addtorrent, add torrent to rutorrent inside PT's websites directly.
 
 This is a part of the [Saber](http://github.com/GutenYe/saber) project, but you can use this standalone.
 
+Current support websites: What, PTP, BTN, SCC
+
 ### Is It Good?
 
 Yes.
@@ -20,19 +22,34 @@ No.
 Getting started
 ---------------
 
-### what is it?
+### What is it?
 
-it adds two saber icon in what.cd, click each one will directy add the torrent file to rutorrent with label "saber" and "saber1".
+For example at what.cd
 
 ![Alt text](http://i.imgur.com/lyacO.jpg what.cd)
 
+It adds two saber icons in the website, click each one will directy add the torrent file to rutorrent with label "saber" and "saber1".
 
-current support websites: What, PTP, BTN, SCC
+
+### Configuration
+
+at the end of the website click 'saber-addtorrent configuratin' button. 
 
 Install
 -------
 
 click Install at http://userscripts.org/scripts/show/125293
+
+Setup Development/Test Environment 
+--------------------------
+
+run test
+
+	$ mkdir tmp assets
+	$ cd assets && ln -s ../spec/fixtures spec_fixtures
+	$ rake server
+	# goto localhost:4020/assets/jasmine/index.html?package=saber-addtorrent
+	
 
 Note on Patches/Pull Requests
 -----------------------------
@@ -51,14 +68,7 @@ Credits
 Resources
 ---------
 
-	some related resources to help each other.
-
-Setup develop environmebt 
-o
-
-mkdir tmp
-$ cd assets/
-$ ln -s ../spec/fixtures spec_fixtures
+* [bpm](https://github.com/bpm/bpm): Browser Package Manager 
 
 Copyright
 ---------
