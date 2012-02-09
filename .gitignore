@@ -1,5 +1,6 @@
 .bpm
 *.bpkg
+.rake_tasks
 /vendor
 /spec/fixtures/*
 /tmp
