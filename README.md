@@ -9,7 +9,7 @@ saber-addtorrent, add torrent to rutorrent inside PT's websites directly.
 
 This is a part of the [Saber](https://github.com/GutenYe/saber) project, but you can use this standalone.
 
-Current support websites: What, PTP, BTN, SCC
+Current support websites: What, PTP, BTN, SCC, BIB
 
 ### Is It Good?
 
@@ -40,6 +40,8 @@ Install
 
 1. firefox: install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish) addon. 
 2. click Install at http://userscripts.org/scripts/show/125293
+
+for BIB, need cookie.
 
 Setup Development/Test Environment 
 --------------------------

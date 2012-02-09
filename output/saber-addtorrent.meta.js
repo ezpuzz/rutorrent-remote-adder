@@ -4,15 +4,11 @@
 // @version       0.1
 // @author        Guten
 // @namespace     http://GutenYe.com
-// @icon          http://i.imgur.com/KZokt.png
+// @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/output/saber-addtorrent.meta.js
+// @icon          http://i.imgur.com/xEjOM.png
 //
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // @require       https://raw.github.com/sizzlemctwizzle/GM_config/master/gm_config.js
-//
-// @domain what.cd
-// @domain broadcasthe.net
-// @domain passthepopcorn.me
-// @domain www.sceneaccess.org
 //
 // @include       *://*what.cd/torrents.php*
 // @include       *://*what.cd/collages.php*
@@ -31,4 +27,9 @@
 // @match        *://www.sceneaccess.org/foreign
 // @match        *://www.sceneaccess.org/xxx
 // @match        *://www.sceneaccess.org/details*
+//
+// @match        http://bibliotik.org/torrents/*
+// @match        http://bibliotik.org/collections/*
+// @match        http://bibliotik.org/publishers/*/torrents/*
+// @match        http://bibliotik.org/creators/*/torrents/*
 // ==/UserScript==

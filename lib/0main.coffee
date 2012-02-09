@@ -10,11 +10,6 @@
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // @require       https://raw.github.com/sizzlemctwizzle/GM_config/master/gm_config.js
 //
-// @domain what.cd
-// @domain broadcasthe.net
-// @domain passthepopcorn.me
-// @domain www.sceneaccess.org
-//
 // @include       *://*what.cd/torrents.php*
 // @include       *://*what.cd/collages.php*
 // @include       *://*what.cd/artist.php*
@@ -32,6 +27,11 @@
 // @match        *://www.sceneaccess.org/foreign
 // @match        *://www.sceneaccess.org/xxx
 // @match        *://www.sceneaccess.org/details*
+//
+// @match        http://bibliotik.org/torrents/*
+// @match        http://bibliotik.org/collections/*
+// @match        http://bibliotik.org/publishers/*/torrents/*
+// @match        http://bibliotik.org/creators/*/torrents/*
 // ==/UserScript==
 `
 pd = console.log
@@ -138,3 +138,5 @@ $ ->
     S.PTP.inject()
   else if host.match(/www\.sceneaccess\.org$/)
     S.SCC.inject()
+  else if host.match(/bibliotik\.org$/)
+    S.BIB.inject()

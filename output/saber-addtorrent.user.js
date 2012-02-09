@@ -4,15 +4,11 @@
 // @version       0.1
 // @author        Guten
 // @namespace     http://GutenYe.com
-// @icon          http://i.imgur.com/KZokt.png
+// @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/output/saber-addtorrent.meta.js
+// @icon          http://i.imgur.com/xEjOM.png
 //
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 // @require       https://raw.github.com/sizzlemctwizzle/GM_config/master/gm_config.js
-//
-// @domain what.cd
-// @domain broadcasthe.net
-// @domain passthepopcorn.me
-// @domain www.sceneaccess.org
 //
 // @include       *://*what.cd/torrents.php*
 // @include       *://*what.cd/collages.php*
@@ -31,6 +27,11 @@
 // @match        *://www.sceneaccess.org/foreign
 // @match        *://www.sceneaccess.org/xxx
 // @match        *://www.sceneaccess.org/details*
+//
+// @match        http://bibliotik.org/torrents/*
+// @match        http://bibliotik.org/collections/*
+// @match        http://bibliotik.org/publishers/*/torrents/*
+// @match        http://bibliotik.org/creators/*/torrents/*
 // ==/UserScript==
 ;
 var S, STYLE, Saber, pd, puts;
@@ -209,8 +210,42 @@ $(function() {
     return S.PTP.inject();
   } else if (host.match(/www\.sceneaccess\.org$/)) {
     return S.SCC.inject();
+  } else if (host.match(/bibliotik\.org$/)) {
+    return S.BIB.inject();
   }
 });
+
+S.BIB = (function() {
+
+  function BIB() {}
+
+  BIB.inject = function() {
+    var bib;
+    bib = new S.BIB();
+    return bib.inject();
+  };
+
+  BIB.prototype.scan = function(fn) {
+    return $("#body a[title='Download']").each(function() {
+      return fn.call(null, $(this), this.href);
+    });
+  };
+
+  BIB.prototype.inject = function() {
+    return this.scan(function(ele, url) {
+      var i, rssimg, _ref, _results;
+      _results = [];
+      for (i = 0, _ref = S.Rc.counts; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
+        rssimg = S.RSSImg.create_ele(url, i);
+        _results.push(ele.after(rssimg));
+      }
+      return _results;
+    });
+  };
+
+  return BIB;
+
+})();
 
 S.BTN = (function() {
 
