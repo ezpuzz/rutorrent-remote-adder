@@ -34,6 +34,7 @@
 // @match        http://bibliotik.org/creators/*/torrents/*
 //
 // @match        http://animebyt.es/torrents.php*
+// @match        http://animebyt.es/torrents2.php*
 // @match        http://animebyt.es/collage.php*
 // @match        http://animebyt.es/series.php*
 // ==/UserScript==
