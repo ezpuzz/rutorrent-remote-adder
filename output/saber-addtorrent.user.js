@@ -32,6 +32,10 @@
 // @match        http://bibliotik.org/collections/*
 // @match        http://bibliotik.org/publishers/*/torrents/*
 // @match        http://bibliotik.org/creators/*/torrents/*
+//
+// @match        http://animebyt.es/torrents.php*
+// @match        http://animebyt.es/collage.php*
+// @match        http://animebyt.es/series.php*
 // ==/UserScript==
 ;
 var S, STYLE, Saber, pd, puts;
@@ -212,8 +216,43 @@ $(function() {
     return S.SCC.inject();
   } else if (host.match(/bibliotik\.org$/)) {
     return S.BIB.inject();
+  } else if (host.match(/animebyt\.es$/)) {
+    return S.AB.inject();
   }
 });
+
+S.AB = (function() {
+
+  function AB() {}
+
+  AB.inject = function() {
+    var ab;
+    ab = new S.AB();
+    return ab.inject();
+  };
+
+  AB.prototype.scan = function(fn) {
+    return $("#content a[title='Download']").each(function() {
+      return fn.call(null, $(this), this.href);
+    });
+  };
+
+  AB.prototype.inject = function() {
+    return this.scan(function(ele, url) {
+      var i, rssimg, _ref, _results;
+      _results = [];
+      for (i = 0, _ref = S.Rc.counts; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
+        rssimg = S.RSSImg.create_ele(url, i);
+        ele.after(rssimg);
+        _results.push(rssimg.before(" | "));
+      }
+      return _results;
+    });
+  };
+
+  return AB;
+
+})();
 
 S.BIB = (function() {
 

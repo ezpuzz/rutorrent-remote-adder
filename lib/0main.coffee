@@ -32,6 +32,10 @@
 // @match        http://bibliotik.org/collections/*
 // @match        http://bibliotik.org/publishers/*/torrents/*
 // @match        http://bibliotik.org/creators/*/torrents/*
+//
+// @match        http://animebyt.es/torrents.php*
+// @match        http://animebyt.es/collage.php*
+// @match        http://animebyt.es/series.php*
 // ==/UserScript==
 `
 pd = console.log
@@ -140,3 +144,5 @@ $ ->
     S.SCC.inject()
   else if host.match(/bibliotik\.org$/)
     S.BIB.inject()
+  else if host.match(/animebyt\.es$/)
+    S.AB.inject()
