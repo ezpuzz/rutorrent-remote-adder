@@ -20,6 +20,7 @@
 //
 // @include       *://*passthepopcorn.me/torrents.php*
 // @include       *://*passthepopcorn.me/collages.php*
+// @include       *://*passthepopcorn.me/bookmarks.php
 //
 // @match        *://www.sceneaccess.org/browse
 // @match        *://www.sceneaccess.org/spam
