@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          saber-addtorrent
 // @description   x 
-// @version       0.1
+// @version       1.0
 // @author        Guten
 // @namespace     http://GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/output/saber-addtorrent.meta.js

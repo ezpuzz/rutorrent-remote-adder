@@ -38,6 +38,7 @@ Setup Development/Test Environment
 
 run test
 
+	$ npm -g install coffee-script
 	$ bundle install
 	$ mkdir tmp assets
 	$ cd assets && ln -s ../spec/fixtures spec_fixtures && cd..
@@ -45,7 +46,6 @@ run test
 	$ bpm preview
 	# goto localhost:4020/assets/jasmine/index.html?package=saber-addtorrent
 	
-
 Note on Patches/Pull Requests
 -----------------------------
 
