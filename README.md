@@ -16,22 +16,16 @@ Getting started
 
 ### What is it?
 
-For example at what.cd
+It adds two saber icons near the download link of the torrents, after click, it'll send the torrent file to rutorrent with label "saber" and "saber1".
 
-![Alt text](http://i.imgur.com/lyacO.jpg what.cd)
-
-It adds two saber icons in the website, click each one will directy add the torrent file to rutorrent with label "saber" and "saber1".
-
-
-### Configuration
-
-At the end of the website click the 'saber-addtorrent configuratin' button. after save, refresh the website.
+![Alt text](https://raw.github.com/GutenYe/saber-addtorrent/master/snapshot.jpg "snapshot")
 
 Install
 -------
 
-1. firefox: install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish) addon. 
+1. Firefox: install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish) addon. 
 2. click Install at http://userscripts.org/scripts/show/125293
+3. click the 'saber-addtorrent configuration' button at the end of the website.
 
 Setup Development/Test Environment 
 --------------------------
