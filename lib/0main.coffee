@@ -1,7 +1,7 @@
 `// ==UserScript==
 // @name          saber-addtorrent
 // @description   x 
-// @version       1.0
+// @version       1.1
 // @author        Guten
 // @namespace     http://GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/output/saber-addtorrent.meta.js
@@ -38,6 +38,9 @@
 // @match        http://animebyt.es/torrents2.php*
 // @match        http://animebyt.es/collage.php*
 // @match        http://animebyt.es/series.php*
+//
+// @match        https://baconbits.org/torrents.php*
+// @match        https://baconbits.org/top10.php
 // ==/UserScript==
 `
 pd = console.log
@@ -148,3 +151,5 @@ $ ->
     S.BIB.inject()
   else if host.match(/animebyt\.es$/)
     S.AB.inject()
+  else if host.match(/baconbits\.org$/)
+    S.BB.inject()

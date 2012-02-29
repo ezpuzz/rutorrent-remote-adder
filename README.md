@@ -9,7 +9,7 @@ saber-addtorrent, add torrent to rutorrent inside PT's websites directly.
 
 This is a part of the [Saber](https://github.com/GutenYe/saber) project, but you can use this alone.
 
-Current support websites: What, PTP, BTN, SCC, AB
+Current support websites: What, PTP, BTN, SCC, BIB, AB, bB
 
 Getting started
 ---------------

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          saber-addtorrent
 // @description   x 
-// @version       1.0
+// @version       1.1
 // @author        Guten
 // @namespace     http://GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/output/saber-addtorrent.meta.js
@@ -38,6 +38,9 @@
 // @match        http://animebyt.es/torrents2.php*
 // @match        http://animebyt.es/collage.php*
 // @match        http://animebyt.es/series.php*
+//
+// @match        https://baconbits.org/torrents.php*
+// @match        https://baconbits.org/top10.php
 // ==/UserScript==
 ;
 var S, STYLE, Saber, pd, puts;
@@ -220,6 +223,8 @@ $(function() {
     return S.BIB.inject();
   } else if (host.match(/animebyt\.es$/)) {
     return S.AB.inject();
+  } else if (host.match(/baconbits\.org$/)) {
+    return S.BB.inject();
   }
 });
 
@@ -253,6 +258,39 @@ S.AB = (function() {
   };
 
   return AB;
+
+})();
+
+S.BB = (function() {
+
+  function BB() {}
+
+  BB.inject = function() {
+    var bb;
+    bb = new S.BB();
+    return bb.inject();
+  };
+
+  BB.prototype.scan = function(fn) {
+    return $("#content a[title='Download']").each(function() {
+      return fn.call(null, $(this), this.href);
+    });
+  };
+
+  BB.prototype.inject = function() {
+    return this.scan(function(ele, url) {
+      var i, rssimg, _ref, _results;
+      _results = [];
+      for (i = 0, _ref = S.Rc.counts; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
+        rssimg = S.RSSImg.create_ele(url, i);
+        ele.after(rssimg);
+        _results.push(rssimg.before(" | "));
+      }
+      return _results;
+    });
+  };
+
+  return BB;
 
 })();
 
