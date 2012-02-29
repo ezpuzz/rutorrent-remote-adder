@@ -30,18 +30,20 @@ Install
 Setup Development/Test Environment 
 --------------------------
 
-setup development environemnt
+development
 
-	$ npm -g install coffee-script
+	# npm -g install coffee-script
 	$ bundle install
+	$ rake build # build saber-addtorrent.user.js
+	$ rake watch # automatically build saber-addtorrent.user.js
 
-run test
+test
 
 	$ mkdir tmp assets
 	$ cd assets && ln -s ../spec/fixtures spec_fixtures && cd..
-	# save a fixture into spec/fixtures/what.html from http://what.cd/torrent.php
+	save a fixture into spec/fixtures/what.html from What torrents page.
 	$ bpm preview
-	# goto localhost:4020/assets/jasmine/index.html?package=saber-addtorrent
+	goto localhost:4020/assets/jasmine/index.html?package=saber-addtorrent
 	
 Note on Patches/Pull Requests
 -----------------------------
