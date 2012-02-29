@@ -1,4 +1,4 @@
-saber-addtorrent, add torrent to rutorrent inside PT's websites directly. 
+saber-addtorrent, add a torrent file to rutorrent from a PT site.
 ================================================================
 
 | Homepage:      |  https://github.com/GutenYe/saber-addtorrent       |
