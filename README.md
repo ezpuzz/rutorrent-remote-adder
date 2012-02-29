@@ -30,10 +30,13 @@ Install
 Setup Development/Test Environment 
 --------------------------
 
-run test
+setup development environemnt
 
 	$ npm -g install coffee-script
 	$ bundle install
+
+run test
+
 	$ mkdir tmp assets
 	$ cd assets && ln -s ../spec/fixtures spec_fixtures && cd..
 	# save a fixture into spec/fixtures/what.html from http://what.cd/torrent.php
@@ -58,6 +61,7 @@ Resources
 ---------
 
 * [saber](https://github.com/GutenYe/saber): the ultimate tool for PT
+* [rutorrent](http://code.google.com/p/rutorrent): Yet another web front-end for rTorrent.
 * [bpm](https://github.com/bpm/bpm): Browser Package Manager 
 * [bundler](https://github.com/carlhuda/bundler): Manage your application's gem dependencies with less pain 
 
