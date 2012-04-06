@@ -9,7 +9,7 @@ saber-addtorrent, add a torrent file to rutorrent from a PT site.
 
 This is a part of the [Saber](https://github.com/GutenYe/saber) project, but you can use this alone.
 
-Current support websites: What, PTP, BTN, SCC, BIB, AB, bB
+Current support websites: What, PTP, BTN, SCC, BIB, AB, bB, TPB, Demonoid
 
 Getting started
 ---------------
@@ -25,26 +25,22 @@ Install
 
 1. Firefox: install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish) addon. 
 2. click Install at http://userscripts.org/scripts/show/125293
-3. click the 'saber-addtorrent configuration' button at the end of the website.
+3. Configuration: click the 'saber-addtorrent configuration' button at the end of the website.
 
 Setup Development/Test Environment 
 --------------------------
 
-development
-
-	# npm -g install coffee-script
 	$ bundle install
-	$ rake build # build saber-addtorrent.user.js
-	$ rake watch # automatically build saber-addtorrent.user.js
 
-test
+Build dist
 
-	$ mkdir tmp assets
-	$ cd assets && ln -s ../spec/fixtures spec_fixtures && cd..
-	save a fixture into spec/fixtures/what.html from What torrents page.
-	$ bpm preview
-	goto localhost:4020/assets/jasmine/index.html?package=saber-addtorrent
-	
+	$ bundle exec rakep build
+
+Run tests
+
+	$ bundle exec rakep server
+	# goto localhost:9090/tests
+
 Note on Patches/Pull Requests
 -----------------------------
 
@@ -64,8 +60,6 @@ Resources
 
 * [saber](https://github.com/GutenYe/saber): the ultimate tool for PT
 * [rutorrent](http://code.google.com/p/rutorrent): Yet another web front-end for rTorrent.
-* [bpm](https://github.com/bpm/bpm): Browser Package Manager 
-* [bundler](https://github.com/carlhuda/bundler): Manage your application's gem dependencies with less pain 
 
 Copyright
 ---------
