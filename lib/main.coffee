@@ -1,5 +1,5 @@
+require "./ext"
 require "./core"
-require "./rssimg"
 require "./tracker"
 
 A.TRACKERS = [
@@ -9,9 +9,20 @@ A.TRACKERS = [
   [ /www\.sceneaccess\.org$/, A.SCC ],
   [ /bibliotik\.org$/, A.BIB ],
   [ /animebyt\.es$/, A.AB ],
-  [ /baconbits\.org$/, A.BB] ]
-
+  [ /baconbits\.org$/, A.BB], 
+  [ /thepiratebay\.se$/, A.TPB] ]
 
 GM_addStyle(A.STYLE)
 A.fire()
-A.RSSImg.fire() # fire rssimg event
+
+# inject rssimg
+host = window.location.hostname
+
+for v in A.TRACKERS
+  [pat, tracker_klass] = v
+  if host.match(pat)
+    pd "inject", pat
+    tracker_klass.inject()
+    break
+
+pd "guten"

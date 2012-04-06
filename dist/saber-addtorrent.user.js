@@ -1,10 +1,38 @@
+var Util,
+  __hasProp = Object.prototype.hasOwnProperty;
+
+Util = (function() {
+
+  function Util() {}
+
+  Util.reopenClass = function(klass, attrs, overwrite) {
+    var k, v, _results;
+    _results = [];
+    for (k in attrs) {
+      if (!__hasProp.call(attrs, k)) continue;
+      v = attrs[k];
+      if (!klass[k]) {
+        _results.push(Object.defineProperty(klass, k, {
+          value: v,
+          writable: true
+        }));
+      } else {
+        _results.push(void 0);
+      }
+    }
+    return _results;
+  };
+
+  return Util;
+
+})();
 // ==UserScript==
 // @name          saber-addtorrent
 // @description   x 
 // @version       1.1
 // @author        Guten
 // @namespace     http://GutenYe.com
-// @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/output/saber-addtorrent.meta.js
+// @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
 // @icon          http://i.imgur.com/xEjOM.png
 //
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
@@ -41,6 +69,11 @@
 //
 // @match        https://baconbits.org/torrents.php*
 // @match        https://baconbits.org/top10.php
+//
+// @match        http://thepiratebay.se/browse/*
+// @match        http://thepiratebay.se/torrent/*
+//
+// @match        http://www.demonoid.me/files/*
 // ==/UserScript==
 ;
 var A, Saber, pd, puts;
@@ -53,19 +86,21 @@ Saber = (function() {
 
   function Saber() {}
 
+  Saber.DEBUG = false;
+
+  Saber.Rc = {};
+
+  Saber.STYLE = "img.rssimg { \n  cursor: pointer; \n}";
+
+  Saber.GM_CONFIG_STYLE = "#GM_config .config_var span { \n  width: 25%; \n}\n\n#GM_config .config_var input {\n  width: 75%;\n}";
+
   return Saber;
 
 })();
 
 A = Saber;
 
-A.Rc = {};
-
-A.STYLE = "img.rssimg { \n  cursor: pointer; \n}";
-
-A.GM_CONFIG_STYLE = "#GM_config .config_var span { \n  width: 25%; \n}\n\n#GM_config .config_var input {\n  width: 75%;\n}";
-
-_.reopenClass(A, {
+Util.reopenClass(A, {
   fire: function() {
     var setting;
     setting = $("<button>saber-addtorrent configuration</button>");
@@ -136,14 +171,82 @@ A.Rc.labels = GM_config.get("labels").split(/[ ]*, */).reverse();
 A.Rc.unchecked_icons = GM_config.get("unchecked_icons").split(/[ ]*, */).reverse();
 
 A.Rc.checked_icons = GM_config.get("checked_icons").split(/[ ]*, */).reverse();
+var __hasProp = Object.prototype.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-A.RSSImg = (function() {
+A.Base = (function() {
 
-  function RSSImg() {}
+  function Base() {}
 
-  RSSImg.SELECTOR = "img.rssimg";
+  Base.SELECTOR = "body";
 
-  RSSImg.create_ele = function(url, index) {
+  Base.SEPERATOR = "";
+
+  Base.inject = function() {
+    var img;
+    img = new this;
+    img.inject();
+    return img.fire();
+  };
+
+  Base.prototype.scan = function(callback) {
+    return $(this.constructor.SELECTOR).each(function() {
+      return callback.call(null, $(this), this.href);
+    });
+  };
+
+  Base.prototype.inject = function() {
+    var _this = this;
+    return this.scan(function(ele, url) {
+      var i, rssimg, _ref, _results;
+      _results = [];
+      for (i = 0, _ref = A.Rc.counts; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
+        rssimg = _this.create_ele(url, i);
+        ele.after(rssimg);
+        _results.push(rssimg.before(_this.constructor.SEPERATOR));
+      }
+      return _results;
+    });
+  };
+
+  Base.prototype.fire = function() {
+    var _this = this;
+    return $("img.rssimg").live("click.saber", function(e) {
+      var img, index, settings;
+      img = $(e.target);
+      index = img.data("index");
+      if (img.data("checked")) {
+        img.data("checked", false);
+        img.attr("src", A.Rc.unchecked_icons[index]);
+      } else {
+        settings = {
+          url: img.data("url"),
+          method: img.data("method"),
+          data: $.param(img.data("params")),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          user: A.Rc.username,
+          password: A.Rc.password,
+          onload: function(rep) {
+            if (rep.responseText.match(/addTorrentFailed/)) {
+              return alert("saber-addtorrent failed.");
+            }
+          }
+        };
+        _this.request(settings);
+        img.data("checked", true);
+        img.attr("src", A.Rc.checked_icons[index]);
+      }
+      return false;
+    });
+  };
+
+  Base.prototype.request = function(settings) {
+    return GM_xmlhttpRequest(settings);
+  };
+
+  Base.prototype.create_ele = function(url, index) {
     return $("<img>", {
       src: A.Rc.unchecked_icons[index],
       "class": "rssimg",
@@ -157,99 +260,6 @@ A.RSSImg = (function() {
           url: url
         }
       }
-    });
-  };
-
-  RSSImg.fire = function() {
-    var img;
-    img = new A.RSSImg();
-    img.inject();
-    return img.fire();
-  };
-
-  RSSImg.prototype.inject = function() {
-    var host, reg, tracker, tracker_klass, v, _i, _len, _ref;
-    host = window.location.hostname;
-    _ref = A.TRACKERS;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      v = _ref[_i];
-      reg = v[0], tracker_klass = v[1];
-      if (host.match(reg)) {
-        tracker = new tracker_klass;
-        tracker.inject();
-        return;
-      }
-    }
-  };
-
-  RSSImg.prototype.fire = function() {
-    var _this = this;
-    return $(A.RSSImg.SELECTOR).live("click.saber", function(e) {
-      var img, index;
-      img = $(e.target);
-      index = img.data("index");
-      if (img.data("checked")) {
-        img.data("checked", false);
-        img.attr("src", A.Rc.unchecked_icons[index]);
-      } else {
-        _this.request(img);
-        img.data("checked", true);
-        img.attr("src", A.Rc.checked_icons[index]);
-      }
-      return false;
-    });
-  };
-
-  RSSImg.prototype.request = function(ele) {
-    var settings;
-    settings = {
-      url: ele.data("url"),
-      method: ele.data("method"),
-      data: $.param(ele.data("params")),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      user: A.Rc.username,
-      password: A.Rc.password,
-      onload: function(rep) {
-        if (rep.responseText.match(/addTorrentFailed/)) {
-          return alert("saber-addtorrent failed.");
-        }
-      }
-    };
-    return GM_xmlhttpRequest(settings);
-  };
-
-  return RSSImg;
-
-})();
-var __hasProp = Object.prototype.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-A.Base = (function() {
-
-  function Base() {}
-
-  Base.SELECTOR = "body";
-
-  Base.SEPERATOR = "";
-
-  Base.prototype.scan = function(fn) {
-    return $(this.constructor.SELECTOR).each(function() {
-      return fn.call(null, $(this), this.href);
-    });
-  };
-
-  Base.prototype.inject = function() {
-    return this.scan(function(ele, url) {
-      var i, rssimg, _ref, _results;
-      _results = [];
-      for (i = 0, _ref = A.Rc.counts; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
-        rssimg = A.RSSImg.create_ele(url, i);
-        ele.after(rssimg);
-        _results.push(rssimg.before(this.constructor.SEPERATOR));
-      }
-      return _results;
     });
   };
 
@@ -364,10 +374,66 @@ A.SCC = (function(_super) {
   return SCC;
 
 })(A.Base);
-A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/www\.sceneaccess\.org$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB]];
+
+A.TPB = (function(_super) {
+
+  __extends(TPB, _super);
+
+  function TPB() {
+    TPB.__super__.constructor.apply(this, arguments);
+  }
+
+  TPB.SELECTOR = "#content a[href^='magnet:']";
+
+  return TPB;
+
+})(A.Base);
+
+A.Demonoid = (function(_super) {
+
+  __extends(Demonoid, _super);
+
+  function Demonoid() {
+    Demonoid.__super__.constructor.apply(this, arguments);
+  }
+
+  Demonoid.SELECTOR = "a[href^='files/downloadmagnet/']";
+
+  Demonoid.prototype.request = function(settings) {
+    return GM_xmlhttpRequest({
+      url: settings["params"]["url"],
+      method: "GET",
+      failOnRedirect: true,
+      onreadystatechange: function(resp) {
+        if (resp.status === 302) {
+          settings["params"]["url"] = resp.responseHeaders.match(/Location: ([^\n]*\n)/)[1];
+          return onreadystatechange.__super__.constructor.call(this, settings);
+        }
+      }
+    });
+  };
+
+  return Demonoid;
+
+})(A.Base);
+var host, pat, tracker_klass, v, _i, _len, _ref;
+A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/www\.sceneaccess\.org$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB]];
 
 GM_addStyle(A.STYLE);
 
 A.fire();
 
-A.RSSImg.fire();
+host = window.location.hostname;
+
+_ref = A.TRACKERS;
+for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+  v = _ref[_i];
+  pat = v[0], tracker_klass = v[1];
+  if (host.match(pat)) {
+    pd("inject", pat);
+    tracker_klass.inject();
+    break;
+  }
+}
+
+pd("guten");

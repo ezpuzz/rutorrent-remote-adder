@@ -4,7 +4,7 @@
 // @version       1.1
 // @author        Guten
 // @namespace     http://GutenYe.com
-// @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/output/saber-addtorrent.meta.js
+// @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
 // @icon          http://i.imgur.com/xEjOM.png
 //
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
@@ -41,4 +41,9 @@
 //
 // @match        https://baconbits.org/torrents.php*
 // @match        https://baconbits.org/top10.php
+//
+// @match        http://thepiratebay.se/browse/*
+// @match        http://thepiratebay.se/torrent/*
+//
+// @match        http://www.demonoid.me/files/*
 // ==/UserScript==

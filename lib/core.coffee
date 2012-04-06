@@ -41,6 +41,11 @@
 //
 // @match        https://baconbits.org/torrents.php*
 // @match        https://baconbits.org/top10.php
+//
+// @match        http://thepiratebay.se/browse/*
+// @match        http://thepiratebay.se/torrent/*
+//
+// @match        http://www.demonoid.me/files/*
 // ==/UserScript==
 `
 # <img data-checked="false" data-url="http://host/add" data-method="post" data-params="x" data-index="0" />
@@ -49,18 +54,14 @@ pd = console.log
 puts = console.log
 
 class Saber
-
-A = Saber
-A.Rc = {}
-
-
-A.STYLE = """
+  @DEBUG = false
+  @Rc = {}
+  @STYLE = """
 img.rssimg { 
   cursor: pointer; 
 }
-"""
-
-A.GM_CONFIG_STYLE = """
+  """
+  @GM_CONFIG_STYLE = """
 #GM_config .config_var span { 
   width: 25%; 
 }
@@ -68,9 +69,11 @@ A.GM_CONFIG_STYLE = """
 #GM_config .config_var input {
   width: 75%;
 }
-"""
+  """
+  
+A = Saber
 
-_.reopenClass A,
+Util.reopenClass A,
   fire: ->
     setting = $("<button>saber-addtorrent configuration</button>") 
     setting.appendTo($("body"))
