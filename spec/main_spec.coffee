@@ -1,7 +1,7 @@
-describe "S.RSSImg", ->
+describe "A.RSSImg", ->
   describe ".create_ele", ->
     it "works", ->
-      img = S.RSSImg.create_ele("url", 0)
+      img = A.RSSImg.create_ele("url", 0)
 
       expect(img.outerHTML()).toEqual """<img class="rssimg" src="unicon0">"""
       expect(img.data()).toEqual { 
