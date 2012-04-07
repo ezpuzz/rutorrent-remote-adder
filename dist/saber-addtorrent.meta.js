@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          saber-addtorrent
 // @description   x 
-// @version       1.1
+// @version       1.2
 // @author        Guten
 // @namespace     http://GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
@@ -46,4 +46,5 @@
 // @match        http://thepiratebay.se/torrent/*
 //
 // @match        http://www.demonoid.me/files/*
+// @match        http://www.demonoid.me/top_torrents.php
 // ==/UserScript==
