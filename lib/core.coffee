@@ -1,6 +1,6 @@
 `// ==UserScript==
 // @name          saber-addtorrent
-// @description   x 
+// @description   add a torrent file to rutorrent from a PT site.
 // @version       1.2
 // @author        Guten
 // @namespace     http://GutenYe.com
