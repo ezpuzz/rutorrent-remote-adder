@@ -1,31 +1,3 @@
-var Util,
-  __hasProp = Object.prototype.hasOwnProperty;
-
-Util = (function() {
-
-  function Util() {}
-
-  Util.reopenClass = function(klass, attrs, overwrite) {
-    var k, v, _results;
-    _results = [];
-    for (k in attrs) {
-      if (!__hasProp.call(attrs, k)) continue;
-      v = attrs[k];
-      if (!klass[k]) {
-        _results.push(Object.defineProperty(klass, k, {
-          value: v,
-          writable: true
-        }));
-      } else {
-        _results.push(void 0);
-      }
-    }
-    return _results;
-  };
-
-  return Util;
-
-})();
 // ==UserScript==
 // @name          saber-addtorrent
 // @description   x 
@@ -76,9 +48,11 @@ Util = (function() {
 // @match        http://www.demonoid.me/files/*
 // ==/UserScript==
 ;
-var A, Saber, pd, puts;
+var A, Saber, debug, pd, puts;
 
 pd = console.log;
+
+debug = pd;
 
 puts = console.log;
 
@@ -86,7 +60,7 @@ Saber = (function() {
 
   function Saber() {}
 
-  Saber.DEBUG = false;
+  Saber.DEBUG = true;
 
   Saber.Rc = {};
 
@@ -94,22 +68,20 @@ Saber = (function() {
 
   Saber.GM_CONFIG_STYLE = "#GM_config .config_var span { \n  width: 25%; \n}\n\n#GM_config .config_var input {\n  width: 75%;\n}";
 
-  return Saber;
-
-})();
-
-A = Saber;
-
-Util.reopenClass(A, {
-  fire: function() {
+  Saber.fire = function() {
     var setting;
     setting = $("<button>saber-addtorrent configuration</button>");
     setting.appendTo($("body"));
     return setting.bind("click", function() {
       return GM_config.open();
     });
-  }
-});
+  };
+
+  return Saber;
+
+})();
+
+A = Saber;
 
 GM_config.init("Saber Addtorrent Configuration", {
   base_url: {
@@ -212,9 +184,15 @@ A.Base = (function() {
   Base.prototype.fire = function() {
     var _this = this;
     return $("img.rssimg").live("click.saber", function(e) {
-      var img, index, settings;
+      var checked, img, index, settings;
       img = $(e.target);
       index = img.data("index");
+      if (img.data("checked")) {
+        checked = "uncheck";
+      } else {
+        checked = "check";
+      }
+      if (A.DEBUG) debug("click-" + checked);
       if (img.data("checked")) {
         img.data("checked", false);
         img.attr("src", A.Rc.unchecked_icons[index]);
@@ -222,7 +200,7 @@ A.Base = (function() {
         settings = {
           url: img.data("url"),
           method: img.data("method"),
-          data: $.param(img.data("params")),
+          data: img.data("params"),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
           },
@@ -243,6 +221,8 @@ A.Base = (function() {
   };
 
   Base.prototype.request = function(settings) {
+    if (A.DEBUG) debug("request", settings);
+    settings["data"] = $.param(settings["data"]);
     return GM_xmlhttpRequest(settings);
   };
 
@@ -397,17 +377,21 @@ A.Demonoid = (function(_super) {
     Demonoid.__super__.constructor.apply(this, arguments);
   }
 
-  Demonoid.SELECTOR = "a[href^='files/downloadmagnet/']";
+  Demonoid.SELECTOR = "a[href^='/files/downloadmagnet/']";
 
   Demonoid.prototype.request = function(settings) {
+    var _this = this;
+    if (A.DEBUG) debug("request", settings);
     return GM_xmlhttpRequest({
-      url: settings["params"]["url"],
+      url: settings["data"]["url"],
       method: "GET",
       failOnRedirect: true,
       onreadystatechange: function(resp) {
         if (resp.status === 302) {
-          settings["params"]["url"] = resp.responseHeaders.match(/Location: ([^\n]*\n)/)[1];
-          return onreadystatechange.__super__.constructor.call(this, settings);
+          settings["data"]["url"] = resp.responseHeaders.match(/Location: ([^\n]*\n)/)[1];
+          if (A.DEBUG) debug("location " + settings["data"]["url"]);
+          settings["data"] = $.param(settings["data"]);
+          return GM_xmlhttpRequest(settings);
         }
       }
     });
@@ -416,24 +400,28 @@ A.Demonoid = (function(_super) {
   return Demonoid;
 
 })(A.Base);
-var host, pat, tracker_klass, v, _i, _len, _ref;
-A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/www\.sceneaccess\.org$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB]];
+var inject;
+A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/sceneaccess\.org$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB], [/demonoid\.me$/, A.Demonoid]];
 
 GM_addStyle(A.STYLE);
 
 A.fire();
 
-host = window.location.hostname;
-
-_ref = A.TRACKERS;
-for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-  v = _ref[_i];
-  pat = v[0], tracker_klass = v[1];
-  if (host.match(pat)) {
-    pd("inject", pat);
-    tracker_klass.inject();
-    break;
+inject = function(host) {
+  var pat, tracker_klass, v, _i, _len, _ref, _results;
+  _ref = A.TRACKERS;
+  _results = [];
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    v = _ref[_i];
+    pat = v[0], tracker_klass = v[1];
+    if (host.match(pat)) {
+      tracker_klass.inject();
+      break;
+    } else {
+      _results.push(void 0);
+    }
   }
-}
+  return _results;
+};
 
-pd("guten");
+inject(window.location.hostname);

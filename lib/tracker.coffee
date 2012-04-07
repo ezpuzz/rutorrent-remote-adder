@@ -23,6 +23,8 @@ class A.Base
     $("img.rssimg").live "click.saber", (e) =>
       img = $(e.target)
       index = img.data("index")
+      if img.data("checked") then checked="uncheck" else checked="check"
+      debug "click-#{checked}" if A.DEBUG
 
       if img.data("checked")
         img.data "checked", false
@@ -32,7 +34,7 @@ class A.Base
         settings = 
           url: img.data("url")
           method: img.data("method")
-          data: $.param(img.data("params"))
+          data: img.data("params")
           headers: {"Content-Type": "application/x-www-form-urlencoded"}
           user: A.Rc.username
           password: A.Rc.password
@@ -49,6 +51,8 @@ class A.Base
       false
 
   request: (settings) ->
+    debug "request", settings if A.DEBUG
+    settings["data"] = $.param(settings["data"])
     GM_xmlhttpRequest settings
 
   create_ele: (url, index)->
@@ -98,14 +102,18 @@ class A.TPB extends A.Base
 
 # demonoid
 class A.Demonoid extends A.Base
-  @SELECTOR = "a[href^='files/downloadmagnet/']"
+  @SELECTOR = "a[href^='/files/downloadmagnet/']"
 
   request: (settings) ->
+    debug "request", settings if A.DEBUG
     GM_xmlhttpRequest
-      url: settings["params"]["url"]
+      url: settings["data"]["url"]
       method: "GET"
       failOnRedirect: true
-      onreadystatechange: (resp)->
+      onreadystatechange: (resp) =>
         if resp.status == 302
-          settings["params"]["url"] = resp.responseHeaders.match(/Location: ([^\n]*\n)/)[1]
-          super(settings)
+          settings["data"]["url"] = resp.responseHeaders.match(/Location: ([^\n]*\n)/)[1]
+          debug "location #{settings["data"]["url"]}" if A.DEBUG
+
+          settings["data"] = $.param(settings["data"])
+          GM_xmlhttpRequest settings

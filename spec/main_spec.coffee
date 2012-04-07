@@ -1,13 +1,17 @@
-describe "A.RSSImg", ->
-  describe ".create_ele", ->
-    it "works", ->
-      img = A.RSSImg.create_ele("url", 0)
+describe "main", ->
+  SITES = [ 
+    ["what.cd", A.What],
+    ["broadcasthe.net", A.BTN],
+    ["passthepopcorn.me", A.PTP],
+    ["sceneaccess.org", A.SCC],
+    ["bibliotok.org", A.BIB],
+    ["animebyt.es", A.AB],
+    ["baconbits.org", A.BB],
+    ["thepriatebay.se", A.TPB],
+    ["demonoid.me", A.Demonoid] ]
 
-      expect(img.outerHTML()).toEqual """<img class="rssimg" src="unicon0">"""
-      expect(img.data()).toEqual { 
-        checked: false, 
-        index: 0, 
-        url: "base_url/php/addtorrent.php",
-        method: "post",
-        params: {label: "label0", url: "url"} }
-
+  for [host, tracker_klass] in SITES
+    it "inject at #{host}", ->
+      spyOn tracker_klass, "inject"
+      inject(host)
+      expect(tracker_klass["inject"]).toHaveBeenCalled()

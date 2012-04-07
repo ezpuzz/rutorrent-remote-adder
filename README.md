@@ -39,7 +39,7 @@ Build dist
 Run tests
 
 	$ bundle exec rakep server
-	# goto localhost:9090/tests
+	# goto localhost:9090/tests/index.html
 
 Note on Patches/Pull Requests
 -----------------------------

@@ -19,24 +19,19 @@ A.Rc.unchecked_icons = ["unicon0", "unicon1"];
 
 A.Rc.checked_icons = ["icon0", "icon1"];
 
-describe("A.RSSImg", function() {
-  return describe(".create_ele", function() {
-    return it("works", function() {
-      var img;
-      img = A.RSSImg.create_ele("url", 0);
-      expect(img.outerHTML()).toEqual("<img class=\"rssimg\" src=\"unicon0\">");
-      return expect(img.data()).toEqual({
-        checked: false,
-        index: 0,
-        url: "base_url/php/addtorrent.php",
-        method: "post",
-        params: {
-          label: "label0",
-          url: "url"
-        }
-      });
-    });
-  });
+describe("main", function() {
+  var SITES, host, tracker_klass, _i, _len, _ref, _results;
+  SITES = [["what.cd", A.What], ["broadcasthe.net", A.BTN], ["passthepopcorn.me", A.PTP], ["sceneaccess.org", A.SCC], ["bibliotok.org", A.BIB], ["animebyt.es", A.AB], ["baconbits.org", A.BB], ["thepriatebay.se", A.TPB], ["demonoid.me", A.Demonoid]];
+  _results = [];
+  for (_i = 0, _len = SITES.length; _i < _len; _i++) {
+    _ref = SITES[_i], host = _ref[0], tracker_klass = _ref[1];
+    _results.push(it("inject at " + host, function() {
+      spyOn(tracker_klass, "inject");
+      inject(host);
+      return expect(tracker_klass["inject"]).toHaveBeenCalled();
+    }));
+  }
+  return _results;
 });
 
 describe("A.What", function() {

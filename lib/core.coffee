@@ -51,10 +51,11 @@
 # <img data-checked="false" data-url="http://host/add" data-method="post" data-params="x" data-index="0" />
 
 pd = console.log
+debug = pd
 puts = console.log
 
 class Saber
-  @DEBUG = false
+  @DEBUG = true
   @Rc = {}
   @STYLE = """
 img.rssimg { 
@@ -71,14 +72,13 @@ img.rssimg {
 }
   """
   
-A = Saber
-
-Util.reopenClass A,
-  fire: ->
+  @fire: ->
     setting = $("<button>saber-addtorrent configuration</button>") 
     setting.appendTo($("body"))
     setting.bind "click", ->
       GM_config.open()
+
+A = Saber
 
 GM_config.init "Saber Addtorrent Configuration", 
   {
