@@ -3,7 +3,7 @@
 // @description   add a torrent file to rutorrent from a PT site.
 // @version       1.2
 // @author        Guten
-// @namespace     http://GutenYe.com
+// @namespace     GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
 // @icon          http://i.imgur.com/xEjOM.png
 //
@@ -33,6 +33,7 @@
 // @match        http://bibliotik.org/collections/*
 // @match        http://bibliotik.org/publishers/*/torrents/*
 // @match        http://bibliotik.org/creators/*/torrents/*
+// @match        http://bibliotik.org/torrents?search*
 //
 // @match        http://animebyt.es/torrents.php*
 // @match        http://animebyt.es/torrents2.php*
@@ -86,11 +87,11 @@ A = Saber;
 
 GM_config.init("Saber Addtorrent Configuration", {
   base_url: {
-    section: ["rutorrent setting"],
     label: "Base URL",
     type: "text",
     "default": "http://localhost/rutorrent",
-    title: "rutorrent url"
+    title: "rutorrent url",
+    section: ["rutorrent setting"]
   },
   username: {
     label: "username",
@@ -105,11 +106,11 @@ GM_config.init("Saber Addtorrent Configuration", {
     title: "password for login rutorrent"
   },
   counts: {
-    section: ["main setting", "seperate value by comma"],
     label: "Counts",
     type: "int",
     "default": 2,
-    title: "number of addtorrent icons"
+    title: "number of addtorrent icons",
+    section: ["main setting", "seperate value by comma"]
   },
   labels: {
     label: "Labels",

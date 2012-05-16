@@ -3,7 +3,7 @@
 // @description   add a torrent file to rutorrent from a PT site.
 // @version       1.2
 // @author        Guten
-// @namespace     http://GutenYe.com
+// @namespace     GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
 // @icon          http://i.imgur.com/xEjOM.png
 //
@@ -33,6 +33,7 @@
 // @match        http://bibliotik.org/collections/*
 // @match        http://bibliotik.org/publishers/*/torrents/*
 // @match        http://bibliotik.org/creators/*/torrents/*
+// @match        http://bibliotik.org/torrents?search*
 //
 // @match        http://animebyt.es/torrents.php*
 // @match        http://animebyt.es/torrents2.php*
@@ -84,14 +85,14 @@ A = Saber
 GM_config.init "Saber Addtorrent Configuration", 
   {
     base_url: {
-      section: ["rutorrent setting"],
-      label: "Base URL", type: "text", default: "http://localhost/rutorrent", title: "rutorrent url"}
+      label: "Base URL", type: "text", default: "http://localhost/rutorrent", title: "rutorrent url",
+      section: ["rutorrent setting"] }
     username: {label: "username", type: "text", default: "foo", title: "username for login rutorrent"}
     password: {label: "password", type: "text", default: "bar", title: "password for login rutorrent"}
 
     counts: {
-      section: ["main setting", "seperate value by comma"],
-      label: "Counts", type: "int", default: 2, title: "number of addtorrent icons"}
+      label: "Counts", type: "int", default: 2, title: "number of addtorrent icons",
+      section: ["main setting", "seperate value by comma"] }
     labels: {label: "Labels", type: "text", default: "saber, saber1", title: "add to rutorrent under the label"}
     unchecked_icons: {label: "Unchecked Icons", type: "text",  default: "http://i.imgur.com/C8xAX.png, http://i.imgur.com/C8xAX.png", title: "icon for uncheched"}
     checked_icons: {label: "Checked Icons", type: "text", default: "http://i.imgur.com/Obx5Y.png, http://i.imgur.com/Obx5Y.png", title: "icon for checked"} 

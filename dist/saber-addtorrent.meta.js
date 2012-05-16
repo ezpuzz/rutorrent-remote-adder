@@ -3,7 +3,7 @@
 // @description   add a torrent file to rutorrent from a PT site.
 // @version       1.2
 // @author        Guten
-// @namespace     http://GutenYe.com
+// @namespace     GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
 // @icon          http://i.imgur.com/xEjOM.png
 //
@@ -33,6 +33,7 @@
 // @match        http://bibliotik.org/collections/*
 // @match        http://bibliotik.org/publishers/*/torrents/*
 // @match        http://bibliotik.org/creators/*/torrents/*
+// @match        http://bibliotik.org/torrents?search*
 //
 // @match        http://animebyt.es/torrents.php*
 // @match        http://animebyt.es/torrents2.php*
