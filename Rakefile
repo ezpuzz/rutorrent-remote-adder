@@ -5,7 +5,7 @@ task :build do
 end
 
 task :watch do
-  run "watchr saber-addtorrent.watchr"
+  run "bundle exec watchr saber-addtorrent.watchr"
 end
 
 task :server do

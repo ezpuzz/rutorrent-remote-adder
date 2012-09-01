@@ -1,3 +1,5 @@
+A.DEBUG = true
+
 class A.Base
   @SELECTOR = "body"
   @SEPERATOR = ""
@@ -15,7 +17,8 @@ class A.Base
   inject: ->
     @scan (ele, url) =>
       for i in [0...A.Rc.counts]
-        rssimg = @create_ele(url, i)
+        link = @build_link(url)
+        rssimg = @create_ele(link, i)
         ele.after(rssimg)
         rssimg.before(@constructor.SEPERATOR)
 
@@ -66,6 +69,9 @@ class A.Base
         method: "post"
         params: {label: A.Rc.labels[index], url: url}
 
+  build_link: (link)->
+    link
+
 # a Gazelle base class
 class A.Gazelle extends A.Base
   @SELECTOR = "#content a[title='Download']"
@@ -91,6 +97,15 @@ class A.BB extends A.Gazelle
 class A.BIB extends A.Gazelle
   @SELECTOR = "#body a[title='Download']"
   @SEPERATOR = ""
+
+  constructor: ->
+    super
+    @rsskey = $("link[title='All torrents as RSS']")[0].href.match(/rsskey=([^&]+)/)[1]
+
+  # http://bibliotik.org/torrents/91236
+  build_link: (link)->
+    id = link.match(/torrents\/([^/]+)/)[1]
+    "#{location.protocol}//#{location.host}/rss/download/#{id}?rsskey=#{@rsskey}"
 
 # SceneAccess.org
 class A.SCC extends A.Base

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          saber-addtorrent
 // @description   add a torrent file to rutorrent from a PT site.
-// @version       1.2
+// @version       1.3
 // @author        Guten
 // @namespace     GutenYe.com
 // @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
@@ -148,6 +148,8 @@ A.Rc.checked_icons = GM_config.get("checked_icons").split(/[ ]*, */).reverse();
 var __hasProp = Object.prototype.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
+A.DEBUG = true;
+
 A.Base = (function() {
 
   function Base() {}
@@ -172,10 +174,11 @@ A.Base = (function() {
   Base.prototype.inject = function() {
     var _this = this;
     return this.scan(function(ele, url) {
-      var i, rssimg, _ref, _results;
+      var i, link, rssimg, _ref, _results;
       _results = [];
       for (i = 0, _ref = A.Rc.counts; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
-        rssimg = _this.create_ele(url, i);
+        link = _this.build_link(url);
+        rssimg = _this.create_ele(link, i);
         ele.after(rssimg);
         _results.push(rssimg.before(_this.constructor.SEPERATOR));
       }
@@ -243,6 +246,10 @@ A.Base = (function() {
         }
       }
     });
+  };
+
+  Base.prototype.build_link = function(link) {
+    return link;
   };
 
   return Base;
@@ -331,13 +338,20 @@ A.BIB = (function(_super) {
 
   __extends(BIB, _super);
 
-  function BIB() {
-    BIB.__super__.constructor.apply(this, arguments);
-  }
-
   BIB.SELECTOR = "#body a[title='Download']";
 
   BIB.SEPERATOR = "";
+
+  function BIB() {
+    BIB.__super__.constructor.apply(this, arguments);
+    this.rsskey = $("link[title='All torrents as RSS']")[0].href.match(/rsskey=([^&]+)/)[1];
+  }
+
+  BIB.prototype.build_link = function(link) {
+    var id;
+    id = link.match(/torrents\/([^/]+)/)[1];
+    return "" + location.protocol + "//" + location.host + "/rss/download/" + id + "?rsskey=" + this.rsskey;
+  };
 
   return BIB;
 
