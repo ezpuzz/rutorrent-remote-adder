@@ -1,5 +1,3 @@
-A.DEBUG = true
-
 class A.Base
   @SELECTOR = "body"
   @SEPERATOR = ""

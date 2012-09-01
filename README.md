@@ -1,8 +1,9 @@
 saber-addtorrent, add a torrent file to rutorrent from a PT site.
 ================================================================
 
-| Homepage:      |  https://github.com/GutenYe/saber-addtorrent       |
+|                |                                                    |
 |----------------|----------------------------------------------------|
+| Homepage:      | https://github.com/GutenYe/saber-addtorrent        |
 | Author:	       | Guten                                              |
 | License:       | MIT-LICENSE                                        |
 | Issue Tracker: | https://github.com/GutenYe/saber-addtorrent/issues |
@@ -23,11 +24,14 @@ It adds two saber icons near the download link of the torrents, after click, it'
 Install
 -------
 
-1. Firefox: install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish) addon. 
+1. install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish)(Firefox), [tampermonkey](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)(Chrome)
 2. click Install at http://userscripts.org/scripts/show/125293
 3. Configuration: click the 'saber-addtorrent configuration' button at the end of the website.
 
-Setup Development/Test Environment 
+Development
+===========
+
+Setup Development Environment 
 --------------------------
 
 	$ bundle install
@@ -41,19 +45,20 @@ Run tests
 	$ bundle exec rakep server
 	# goto localhost:9090/tests/index.html
 
-Note on Patches/Pull Requests
------------------------------
+Contributing
+-------------
 
-1. Fork the project.
-2. Make your feature addition or bug fix.
-3. Add tests for it. This is important so I don't break it in a future version unintentionally.
-4. Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-5. Send me a pull request. Bonus points for topic branches.
+* Submit any bugs/features/ideas to github issue tracker.
 
-Credits
--------
+Pull requests are very welcome! Please try to follow these simple rules if applicable:
 
-* [Contributors](https://github.com/GutenYe/saber-addtorrent/contributors)
+* Please create a topic branch for every separate change you make.
+* Make sure your patches are well tested. 
+
+Contributors
+------------
+
+[https://github.com/GutenYe/saber-addtorrent/contributors](https://github.com/GutenYe/saber-addtorrent/contributors)
 
 Resources
 ---------

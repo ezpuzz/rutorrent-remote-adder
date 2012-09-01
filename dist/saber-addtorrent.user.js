@@ -52,11 +52,9 @@
 ;
 var A, Saber, debug, pd, puts;
 
-pd = console.log;
-
-debug = pd;
-
-puts = console.log;
+pd = function(){ console.log.apply(console, arguments) };
+debug = function(){ console.log.apply(console,  arguments) };
+puts = function(){ console.log.apply(console,  arguments) };
 
 Saber = (function() {
 
