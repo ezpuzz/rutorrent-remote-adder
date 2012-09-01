@@ -20,4 +20,5 @@ gem "rake-pipeline-web-filters", :git => "https://github.com/wycats/rake-pipelin
 group :development do
   gem "rake"
   gem "watchr"
+  gem "pimpmychangelog"
 end
