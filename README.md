@@ -12,6 +12,12 @@ This is a part of the [Saber](https://github.com/GutenYe/saber) project, but you
 
 > Support sites: What, PTP, BTN, SCC, BIB, AB, bB, TPB, Demonoid
 
+**Features**:
+
+- Support both Firefox and Chrome
+- Support add a trorrent with label
+- Better development with coffescript
+
 Getting started
 ---------------
 
