@@ -10,7 +10,8 @@ A.TRACKERS = [
   [ /animebyt\.es$/, A.AB ],
   [ /baconbits\.org$/, A.BB], 
   [ /thepiratebay\.se$/, A.TPB], 
-  [ /demonoid\.me$/, A.Demonoid]]
+  [ /demonoid\.me$/, A.Demonoid],
+  [ /d-addicts\.com$/, A.DAddicts]]
 
 GM_addStyle(A.STYLE)
 A.fire()

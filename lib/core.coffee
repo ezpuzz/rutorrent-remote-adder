@@ -48,13 +48,15 @@
 //
 // @match        http://www.demonoid.me/files/*
 // @match        http://www.demonoid.me/top_torrents.php
+//
+// @match        http://d-addicts.com/forum/torrents.php*
 // ==/UserScript==
 `
 # <img data-checked="false" data-url="http://host/add" data-method="post" data-params="x" data-index="0" />
 
-pd = console.log
-debug = pd
-puts = console.log
+pd = ()-> console.log.apply(console, arguments) 
+debug = ()-> console.log.apply(console, arguments) 
+puts = ()-> console.log.apply(console, arguments)
 
 class Saber
   @DEBUG = true

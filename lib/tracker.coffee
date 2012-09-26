@@ -98,7 +98,7 @@ class A.BIB extends A.Gazelle
 
   constructor: ->
     super
-    @rsskey = $("link[title='All torrents as RSS']")[0].href.match(/rsskey=([^&]+)/)[1]
+    @rsskey = $("link[href*='rsskey']")[0].href.match(/rsskey=([^&]+)/)[1]
 
   # http://bibliotik.org/torrents/91236
   build_link: (link)->
@@ -130,3 +130,7 @@ class A.Demonoid extends A.Base
 
           settings["data"] = $.param(settings["data"])
           GM_xmlhttpRequest settings
+
+class A.DAddicts extends A.Base
+  @SELECTOR = "a[href^='magnet:']"
+

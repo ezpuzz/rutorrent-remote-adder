@@ -1,4 +1,4 @@
-saber-addtorrent, add a torrent file to rutorrent from a PT site.
+saber-addtorrent, add a torrent file to rutorrent inside the site.
 ================================================================
 
 |                |                                                    |
@@ -10,7 +10,8 @@ saber-addtorrent, add a torrent file to rutorrent from a PT site.
 
 This is a part of the [Saber](https://github.com/GutenYe/saber) project, but you can use this alone.
 
-> Support sites: What, PTP, BTN, SCC, BIB, AB, bB, TPB, Demonoid
+> Support sites: What, PTP, BTN, SCC, BIB, AB, bB, TPB, Demonoid, D-Addictse
+> Support BT clients: rutorrent
 
 **Features**:
 

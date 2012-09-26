@@ -48,13 +48,24 @@
 //
 // @match        http://www.demonoid.me/files/*
 // @match        http://www.demonoid.me/top_torrents.php
+//
+// @match        http://d-addicts.com/forum/torrents.php*
 // ==/UserScript==
 ;
+
 var A, Saber, debug, pd, puts;
 
-pd = function(){ console.log.apply(console, arguments) };
-debug = function(){ console.log.apply(console,  arguments) };
-puts = function(){ console.log.apply(console,  arguments) };
+pd = function() {
+  return console.log.apply(console, arguments);
+};
+
+debug = function() {
+  return console.log.apply(console, arguments);
+};
+
+puts = function() {
+  return console.log.apply(console, arguments);
+};
 
 Saber = (function() {
 
@@ -143,10 +154,8 @@ A.Rc.labels = GM_config.get("labels").split(/[ ]*, */).reverse();
 A.Rc.unchecked_icons = GM_config.get("unchecked_icons").split(/[ ]*, */).reverse();
 
 A.Rc.checked_icons = GM_config.get("checked_icons").split(/[ ]*, */).reverse();
-var __hasProp = Object.prototype.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
-
-A.DEBUG = true;
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 A.Base = (function() {
 
@@ -172,9 +181,9 @@ A.Base = (function() {
   Base.prototype.inject = function() {
     var _this = this;
     return this.scan(function(ele, url) {
-      var i, link, rssimg, _ref, _results;
+      var i, link, rssimg, _i, _ref, _results;
       _results = [];
-      for (i = 0, _ref = A.Rc.counts; 0 <= _ref ? i < _ref : i > _ref; 0 <= _ref ? i++ : i--) {
+      for (i = _i = 0, _ref = A.Rc.counts; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         link = _this.build_link(url);
         rssimg = _this.create_ele(link, i);
         ele.after(rssimg);
@@ -195,7 +204,9 @@ A.Base = (function() {
       } else {
         checked = "check";
       }
-      if (A.DEBUG) debug("click-" + checked);
+      if (A.DEBUG) {
+        debug("click-" + checked);
+      }
       if (img.data("checked")) {
         img.data("checked", false);
         img.attr("src", A.Rc.unchecked_icons[index]);
@@ -224,7 +235,9 @@ A.Base = (function() {
   };
 
   Base.prototype.request = function(settings) {
-    if (A.DEBUG) debug("request", settings);
+    if (A.DEBUG) {
+      debug("request", settings);
+    }
     settings["data"] = $.param(settings["data"]);
     return GM_xmlhttpRequest(settings);
   };
@@ -259,7 +272,7 @@ A.Gazelle = (function(_super) {
   __extends(Gazelle, _super);
 
   function Gazelle() {
-    Gazelle.__super__.constructor.apply(this, arguments);
+    return Gazelle.__super__.constructor.apply(this, arguments);
   }
 
   Gazelle.SELECTOR = "#content a[title='Download']";
@@ -275,7 +288,7 @@ A.What = (function(_super) {
   __extends(What, _super);
 
   function What() {
-    What.__super__.constructor.apply(this, arguments);
+    return What.__super__.constructor.apply(this, arguments);
   }
 
   return What;
@@ -287,7 +300,7 @@ A.BTN = (function(_super) {
   __extends(BTN, _super);
 
   function BTN() {
-    BTN.__super__.constructor.apply(this, arguments);
+    return BTN.__super__.constructor.apply(this, arguments);
   }
 
   BTN.SEPERATOR = "";
@@ -301,7 +314,7 @@ A.PTP = (function(_super) {
   __extends(PTP, _super);
 
   function PTP() {
-    PTP.__super__.constructor.apply(this, arguments);
+    return PTP.__super__.constructor.apply(this, arguments);
   }
 
   return PTP;
@@ -313,7 +326,7 @@ A.AB = (function(_super) {
   __extends(AB, _super);
 
   function AB() {
-    AB.__super__.constructor.apply(this, arguments);
+    return AB.__super__.constructor.apply(this, arguments);
   }
 
   return AB;
@@ -325,7 +338,7 @@ A.BB = (function(_super) {
   __extends(BB, _super);
 
   function BB() {
-    BB.__super__.constructor.apply(this, arguments);
+    return BB.__super__.constructor.apply(this, arguments);
   }
 
   return BB;
@@ -342,7 +355,7 @@ A.BIB = (function(_super) {
 
   function BIB() {
     BIB.__super__.constructor.apply(this, arguments);
-    this.rsskey = $("link[title='All torrents as RSS']")[0].href.match(/rsskey=([^&]+)/)[1];
+    this.rsskey = $("link[href*='rsskey']")[0].href.match(/rsskey=([^&]+)/)[1];
   }
 
   BIB.prototype.build_link = function(link) {
@@ -360,7 +373,7 @@ A.SCC = (function(_super) {
   __extends(SCC, _super);
 
   function SCC() {
-    SCC.__super__.constructor.apply(this, arguments);
+    return SCC.__super__.constructor.apply(this, arguments);
   }
 
   SCC.SELECTOR = "#content a[href^='download/']";
@@ -374,7 +387,7 @@ A.TPB = (function(_super) {
   __extends(TPB, _super);
 
   function TPB() {
-    TPB.__super__.constructor.apply(this, arguments);
+    return TPB.__super__.constructor.apply(this, arguments);
   }
 
   TPB.SELECTOR = "#content a[href^='magnet:']";
@@ -388,14 +401,16 @@ A.Demonoid = (function(_super) {
   __extends(Demonoid, _super);
 
   function Demonoid() {
-    Demonoid.__super__.constructor.apply(this, arguments);
+    return Demonoid.__super__.constructor.apply(this, arguments);
   }
 
   Demonoid.SELECTOR = "a[href^='/files/downloadmagnet/']";
 
   Demonoid.prototype.request = function(settings) {
     var _this = this;
-    if (A.DEBUG) debug("request", settings);
+    if (A.DEBUG) {
+      debug("request", settings);
+    }
     return GM_xmlhttpRequest({
       url: settings["data"]["url"],
       method: "GET",
@@ -403,7 +418,9 @@ A.Demonoid = (function(_super) {
       onreadystatechange: function(resp) {
         if (resp.status === 302) {
           settings["data"]["url"] = resp.responseHeaders.match(/Location: ([^\n]*\n)/)[1];
-          if (A.DEBUG) debug("location " + settings["data"]["url"]);
+          if (A.DEBUG) {
+            debug("location " + settings["data"]["url"]);
+          }
           settings["data"] = $.param(settings["data"]);
           return GM_xmlhttpRequest(settings);
         }
@@ -414,8 +431,22 @@ A.Demonoid = (function(_super) {
   return Demonoid;
 
 })(A.Base);
+
+A.DAddicts = (function(_super) {
+
+  __extends(DAddicts, _super);
+
+  function DAddicts() {
+    return DAddicts.__super__.constructor.apply(this, arguments);
+  }
+
+  DAddicts.SELECTOR = "a[href^='magnet:']";
+
+  return DAddicts;
+
+})(A.Base);
 var inject;
-A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/sceneaccess\.org$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB], [/demonoid\.me$/, A.Demonoid]];
+A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/sceneaccess\.org$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB], [/demonoid\.me$/, A.Demonoid], [/d-addicts\.com$/, A.DAddicts]];
 
 GM_addStyle(A.STYLE);
 

@@ -48,4 +48,6 @@
 //
 // @match        http://www.demonoid.me/files/*
 // @match        http://www.demonoid.me/top_torrents.php
+//
+// @match        http://d-addicts.com/forum/torrents.php*
 // ==/UserScript==
