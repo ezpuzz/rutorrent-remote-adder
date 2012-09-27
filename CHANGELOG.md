@@ -3,6 +3,7 @@
 Improvements
 
   - Add D-Addicts support
+	- Add saber-link in BTN's H&R page
 
 ## 1.3 (Sep 1, 2012)
 

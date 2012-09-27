@@ -17,6 +17,7 @@
 // @match         *://broadcasthe.net/torrents.php*
 // @match         *://broadcasthe.net/collages.php*
 // @match         *://broadcasthe.net/series.php*
+// @match         *://broadcasthe.net/snatchlist.php*
 //
 // @include       *://*passthepopcorn.me/torrents.php*
 // @include       *://*passthepopcorn.me/collages.php*

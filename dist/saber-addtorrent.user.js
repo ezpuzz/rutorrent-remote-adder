@@ -17,6 +17,7 @@
 // @match         *://broadcasthe.net/torrents.php*
 // @match         *://broadcasthe.net/collages.php*
 // @match         *://broadcasthe.net/series.php*
+// @match         *://broadcasthe.net/snatchlist.php*
 //
 // @include       *://*passthepopcorn.me/torrents.php*
 // @include       *://*passthepopcorn.me/collages.php*
@@ -299,11 +300,19 @@ A.BTN = (function(_super) {
 
   __extends(BTN, _super);
 
+  BTN.SEPERATOR = "";
+
   function BTN() {
-    return BTN.__super__.constructor.apply(this, arguments);
+    var _, _ref;
+    BTN.__super__.constructor.apply(this, arguments);
+    _ref = $("link[href*='authkey']")[0].href.match(/passkey=([^&]+)&authkey=([^&]+)/), _ = _ref[0], this.passkey = _ref[1], this.authkey = _ref[2];
   }
 
-  BTN.SEPERATOR = "";
+  BTN.prototype.build_link = function(link) {
+    var id;
+    id = link.match(/id=(\d+)/)[1];
+    return "" + location.protocol + "//" + location.host + "/torrents.php?action=download&id=" + id + "&authkey=" + this.authkey + "&torrent_pass=" + this.passkey;
+  };
 
   return BTN;
 

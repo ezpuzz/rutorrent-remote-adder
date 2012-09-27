@@ -82,6 +82,14 @@ class A.What extends A.Gazelle
 class A.BTN extends A.Gazelle
   @SEPERATOR = ""
 
+  constructor: ->
+    super
+    [_, @passkey, @authkey] = $("link[href*='authkey']")[0].href.match(/passkey=([^&]+)&authkey=([^&]+)/)
+
+  build_link: (link)->
+    id = link.match(/id=(\d+)/)[1]
+    "#{location.protocol}//#{location.host}/torrents.php?action=download&id=#{id}&authkey=#{@authkey}&torrent_pass=#{@passkey}"
+
 # PassThePopcorn
 class A.PTP extends A.Gazelle
 
