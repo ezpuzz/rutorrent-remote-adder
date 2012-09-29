@@ -8,6 +8,7 @@
 // @icon          http://i.imgur.com/xEjOM.png
 //
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+// @require       https://raw.github.com/gist/2625891/waitForKeyElements.js
 // @require       https://raw.github.com/sizzlemctwizzle/GM_config/master/gm_config.js
 //
 // @include       *://*what.cd/torrents.php*
@@ -181,17 +182,21 @@ A.Base = (function() {
 
   Base.prototype.inject = function() {
     var _this = this;
-    return this.scan(function(ele, url) {
-      var i, link, rssimg, _i, _ref, _results;
-      _results = [];
-      for (i = _i = 0, _ref = A.Rc.counts; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        link = _this.build_link(url);
-        rssimg = _this.create_ele(link, i);
-        ele.after(rssimg);
-        _results.push(rssimg.before(_this.constructor.SEPERATOR));
-      }
-      return _results;
+    return this.scan(function(e, link) {
+      return _this.inject_rssimg(e, link);
     });
+  };
+
+  Base.prototype.inject_rssimg = function(e, link) {
+    var i, rssimg, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = A.Rc.counts; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      link = this.build_link(link);
+      rssimg = this.create_ele(link, i);
+      e.after(rssimg);
+      _results.push(rssimg.before(this.constructor.SEPERATOR));
+    }
+    return _results;
   };
 
   Base.prototype.fire = function() {
@@ -308,9 +313,30 @@ A.BTN = (function(_super) {
     _ref = $("link[href*='authkey']")[0].href.match(/passkey=([^&]+)&authkey=([^&]+)/), _ = _ref[0], this.passkey = _ref[1], this.authkey = _ref[2];
   }
 
-  BTN.prototype.build_link = function(link) {
-    var id;
-    id = link.match(/id=(\d+)/)[1];
+  BTN.prototype.scan = function(callback) {
+    return $(this.constructor.SELECTOR).each(function() {
+      var id;
+      id = this.href.match(/id=(\d+)/)[1];
+      return callback.call(null, $(this), id);
+    });
+  };
+
+  BTN.prototype.inject = function() {
+    var _this = this;
+    if (!location.pathname.match(/snatchlist.php/)) {
+      this.scan(function(e, link) {
+        return _this.inject_rssimg(e, link);
+      });
+    }
+    return waitForKeyElements("td[id^=hnr]", function(e) {
+      var id;
+      id = e.attr("id").match(/hnr(\d+)/)[1];
+      _this.inject_rssimg(e, id);
+      return false;
+    });
+  };
+
+  BTN.prototype.build_link = function(id) {
     return "" + location.protocol + "//" + location.host + "/torrents.php?action=download&id=" + id + "&authkey=" + this.authkey + "&torrent_pass=" + this.passkey;
   };
 
@@ -367,9 +393,15 @@ A.BIB = (function(_super) {
     this.rsskey = $("link[href*='rsskey']")[0].href.match(/rsskey=([^&]+)/)[1];
   }
 
-  BIB.prototype.build_link = function(link) {
-    var id;
-    id = link.match(/torrents\/([^/]+)/)[1];
+  BIB.prototype.scan = function(callback) {
+    return $(this.constructor.SELECTOR).each(function() {
+      var id;
+      id = this.href.match(/torrents\/([^/]+)/)[1];
+      return callback.call(null, $(this), id);
+    });
+  };
+
+  BIB.prototype.build_link = function(id) {
     return "" + location.protocol + "//" + location.host + "/rss/download/" + id + "?rsskey=" + this.rsskey;
   };
 

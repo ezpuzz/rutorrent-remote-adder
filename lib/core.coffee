@@ -8,6 +8,7 @@
 // @icon          http://i.imgur.com/xEjOM.png
 //
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
+// @require       https://raw.github.com/gist/2625891/waitForKeyElements.js
 // @require       https://raw.github.com/sizzlemctwizzle/GM_config/master/gm_config.js
 //
 // @include       *://*what.cd/torrents.php*

@@ -7,18 +7,21 @@ class A.Base
     img.inject()
     img.fire()
 
-  # callback(ele, url)
+  # callback(e, link|id)
   scan: (callback)->
     $(@constructor.SELECTOR).each ->
       callback.call null, $(this), this.href
 
   inject: ->
-    @scan (ele, url) =>
-      for i in [0...A.Rc.counts]
-        link = @build_link(url)
-        rssimg = @create_ele(link, i)
-        ele.after(rssimg)
-        rssimg.before(@constructor.SEPERATOR)
+    @scan (e, link) =>
+      @inject_rssimg(e, link)
+
+  inject_rssimg: (e, link)->
+    for i in [0...A.Rc.counts]
+      link = @build_link(link)
+      rssimg = @create_ele(link, i)
+      e.after(rssimg)
+      rssimg.before(@constructor.SEPERATOR)
 
   fire: ->
     $("img.rssimg").live "click.saber", (e) =>
@@ -86,8 +89,24 @@ class A.BTN extends A.Gazelle
     super
     [_, @passkey, @authkey] = $("link[href*='authkey']")[0].href.match(/passkey=([^&]+)&authkey=([^&]+)/)
 
-  build_link: (link)->
-    id = link.match(/id=(\d+)/)[1]
+  scan: (callback)->
+    $(@constructor.SELECTOR).each ->
+      id = this.href.match(/id=(\d+)/)[1]
+      callback.call null, $(this), id
+
+  inject: ->
+    if not location.pathname.match(/snatchlist.php/)
+      @scan (e, link) =>
+        @inject_rssimg(e, link)
+
+    # Torrent History
+    waitForKeyElements "td[id^=hnr]", (e)=>
+      id = e.attr("id").match(/hnr(\d+)/)[1]
+      @inject_rssimg(e, id)
+
+      false
+
+  build_link: (id)->
     "#{location.protocol}//#{location.host}/torrents.php?action=download&id=#{id}&authkey=#{@authkey}&torrent_pass=#{@passkey}"
 
 # PassThePopcorn
@@ -108,9 +127,12 @@ class A.BIB extends A.Gazelle
     super
     @rsskey = $("link[href*='rsskey']")[0].href.match(/rsskey=([^&]+)/)[1]
 
-  # http://bibliotik.org/torrents/91236
-  build_link: (link)->
-    id = link.match(/torrents\/([^/]+)/)[1]
+  scan: (callback)->
+    $(@constructor.SELECTOR).each ->
+      id = this.href.match(/torrents\/([^/]+)/)[1]
+      callback.call null, $(this), id
+
+  build_link: (id)->
     "#{location.protocol}//#{location.host}/rss/download/#{id}?rsskey=#{@rsskey}"
 
 # SceneAccess.org

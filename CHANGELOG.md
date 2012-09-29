@@ -2,8 +2,8 @@
 
 Improvements
 
-  - Add D-Addicts support
-	- Add saber-link in BTN's H&R page
+  - Add D-Addicts support.
+	- Add saber-link in BTN's Torrent History page.
 
 ## 1.3 (Sep 1, 2012)
 
