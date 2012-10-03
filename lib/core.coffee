@@ -51,7 +51,7 @@
 // @match        http://www.demonoid.me/files/*
 // @match        http://www.demonoid.me/top_torrents.php
 //
-// @match        http://d-addicts.com/forum/torrents.php*
+// @include      http://*d-addicts.com/forum/torrents.php*
 // ==/UserScript==
 `
 # <img data-checked="false" data-url="http://host/add" data-method="post" data-params="x" data-index="0" />

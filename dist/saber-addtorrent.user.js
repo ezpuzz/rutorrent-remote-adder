@@ -51,7 +51,7 @@
 // @match        http://www.demonoid.me/files/*
 // @match        http://www.demonoid.me/top_torrents.php
 //
-// @match        http://d-addicts.com/forum/torrents.php*
+// @include      http://*d-addicts.com/forum/torrents.php*
 // ==/UserScript==
 ;
 
@@ -211,7 +211,7 @@ A.Base = (function() {
         checked = "check";
       }
       if (A.DEBUG) {
-        debug("click-" + checked);
+        debug("click " + checked);
       }
       if (img.data("checked")) {
         img.data("checked", false);

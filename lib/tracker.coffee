@@ -28,7 +28,7 @@ class A.Base
       img = $(e.target)
       index = img.data("index")
       if img.data("checked") then checked="uncheck" else checked="check"
-      debug "click-#{checked}" if A.DEBUG
+      debug "click #{checked}" if A.DEBUG
 
       if img.data("checked")
         img.data "checked", false
