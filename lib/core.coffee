@@ -2,9 +2,9 @@
 // @name          saber-addtorrent
 // @description   add a torrent file to rutorrent from a PT site.
 // @version       1.3
-// @author        Guten
-// @namespace     GutenYe.com
-// @updateURL     https://raw.github.com/GutenYe/saber-addtorrent/master/dist/saber-addtorrent.meta.js
+// @author        Saber
+// @namespace     sabersalv
+// @updateURL     https://raw.github.com/SaberSalv/saber-addtorrent/master/dist/saber-addtorrent.meta.js
 // @icon          http://i.imgur.com/xEjOM.png
 //
 // @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js

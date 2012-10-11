@@ -3,12 +3,12 @@ saber-addtorrent, add a torrent file to rutorrent inside the site.
 
 |                |                                                    |
 |----------------|----------------------------------------------------|
-| Homepage:      | https://github.com/GutenYe/saber-addtorrent        |
-| Author:	       | Guten                                              |
+| Homepage:      | https://github.com/SaberSalv/saber-addtorrent        |
+| Author:	       | Saber                                              |
 | License:       | MIT-LICENSE                                        |
-| Issue Tracker: | https://github.com/GutenYe/saber-addtorrent/issues |
+| Issue Tracker: | https://github.com/SaberSalv/saber-addtorrent/issues |
 
-This is a part of the [Saber](https://github.com/GutenYe/saber) project, but you can use this alone.
+This is a part of the [Saber](https://github.com/SaberSalv/saber) project, but you can use this alone.
 
 > Support sites: What, PTP, BTN, SCC, BIB, AB, bB, TPB, Demonoid, D-Addictse
 > Support BT clients: rutorrent
@@ -26,7 +26,7 @@ Getting started
 
 It adds two saber icons near the download link of the torrents, after click, it'll send the torrent file to rutorrent with label "saber" and "saber1".
 
-![Alt text](https://raw.github.com/GutenYe/saber-addtorrent/master/snapshot.jpg "snapshot")
+![Alt text](https://raw.github.com/SaberSalv/saber-addtorrent/master/snapshot.jpg "snapshot")
 
 Install
 -------
@@ -65,12 +65,12 @@ Pull requests are very welcome! Please try to follow these simple rules if appli
 Contributors
 ------------
 
-[https://github.com/GutenYe/saber-addtorrent/contributors](https://github.com/GutenYe/saber-addtorrent/contributors)
+[https://github.com/SaberSalv/saber-addtorrent/contributors](https://github.com/SaberSalv/saber-addtorrent/contributors)
 
 Resources
 ---------
 
-* [saber](https://github.com/GutenYe/saber): the ultimate tool for PT
+* [saber](https://github.com/SaberSalv/saber): the ultimate tool for PT
 * [rutorrent](http://code.google.com/p/rutorrent): Yet another web front-end for rTorrent.
 
 Copyright
@@ -78,7 +78,7 @@ Copyright
 
 (the MIT License)
 
-Copyright (c) 2011-2012 Guten
+Copyright (c) 2011-2012 Saber
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
