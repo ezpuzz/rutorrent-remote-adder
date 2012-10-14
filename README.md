@@ -10,7 +10,8 @@ saber-addtorrent, add a torrent file to rutorrent inside the site.
 
 This is a part of the [Saber](https://github.com/SaberSalv/saber) project, but you can use this alone.
 
-> Support sites: What, PTP, BTN, SCC, BIB, AB, bB, TPB, Demonoid, D-Addictse
+> Support sites: What, PTP, BTN, SCC, BIB, AB, bB, TPB, Demonoid, D-Addicts
+
 > Support BT clients: rutorrent
 
 **Features**:
