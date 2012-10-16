@@ -5,7 +5,7 @@ A.TRACKERS = [
   [ /what\.cd$/, A.What ],
   [ /broadcasthe\.net$/, A.BTN ],
   [ /passthepopcorn\.me$/, A.PTP ],
-  [ /sceneaccess\.org$/, A.SCC ],
+  [ /sceneaccess\.eu$/, A.SCC ],
   [ /bibliotik\.org$/, A.BIB ],
   [ /animebyt\.es$/, A.AB ],
   [ /baconbits\.org$/, A.BB], 

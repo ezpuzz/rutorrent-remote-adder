@@ -75,7 +75,7 @@ class A.Base
 
 # a Gazelle base class
 class A.Gazelle extends A.Base
-  @SELECTOR = "#content a[title='Download']"
+  @SELECTOR = "a[title='Download']"
   @SEPERATOR = " | "
 
 # what.cd
@@ -137,11 +137,11 @@ class A.BIB extends A.Gazelle
 
 # SceneAccess.org
 class A.SCC extends A.Base
-  @SELECTOR = "#content a[href^='download/']"
+  @SELECTOR = "a[href^='download/']"
 
 # thepriatebay
 class A.TPB extends A.Base
-  @SELECTOR = "#content a[href^='magnet:']"
+  @SELECTOR = "a[href^='magnet:']"
 
 # demonoid
 class A.Demonoid extends A.Base

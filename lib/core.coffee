@@ -24,12 +24,12 @@
 // @include       *://*passthepopcorn.me/collages.php*
 // @include       *://*passthepopcorn.me/bookmarks.php
 //
-// @match        *://www.sceneaccess.org/browse
-// @match        *://www.sceneaccess.org/spam
-// @match        *://www.sceneaccess.org/archive
-// @match        *://www.sceneaccess.org/foreign
-// @match        *://www.sceneaccess.org/xxx
-// @match        *://www.sceneaccess.org/details*
+// @match        *://sceneaccess.eu/browse*
+// @match        *://sceneaccess.eu/spam*
+// @match        *://sceneaccess.eu/archive*
+// @match        *://sceneaccess.eu/foreign*
+// @match        *://sceneaccess.eu/xxx*
+// @match        *://sceneaccess.eu/details*
 //
 // @match        http://bibliotik.org/torrents/*
 // @match        http://bibliotik.org/collections/*

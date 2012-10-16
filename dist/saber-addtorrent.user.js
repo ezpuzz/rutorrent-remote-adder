@@ -24,12 +24,12 @@
 // @include       *://*passthepopcorn.me/collages.php*
 // @include       *://*passthepopcorn.me/bookmarks.php
 //
-// @match        *://www.sceneaccess.org/browse
-// @match        *://www.sceneaccess.org/spam
-// @match        *://www.sceneaccess.org/archive
-// @match        *://www.sceneaccess.org/foreign
-// @match        *://www.sceneaccess.org/xxx
-// @match        *://www.sceneaccess.org/details*
+// @match        *://sceneaccess.eu/browse*
+// @match        *://sceneaccess.eu/spam*
+// @match        *://sceneaccess.eu/archive*
+// @match        *://sceneaccess.eu/foreign*
+// @match        *://sceneaccess.eu/xxx*
+// @match        *://sceneaccess.eu/details*
 //
 // @match        http://bibliotik.org/torrents/*
 // @match        http://bibliotik.org/collections/*
@@ -281,7 +281,7 @@ A.Gazelle = (function(_super) {
     return Gazelle.__super__.constructor.apply(this, arguments);
   }
 
-  Gazelle.SELECTOR = "#content a[title='Download']";
+  Gazelle.SELECTOR = "a[title='Download']";
 
   Gazelle.SEPERATOR = " | ";
 
@@ -417,7 +417,7 @@ A.SCC = (function(_super) {
     return SCC.__super__.constructor.apply(this, arguments);
   }
 
-  SCC.SELECTOR = "#content a[href^='download/']";
+  SCC.SELECTOR = "a[href^='download/']";
 
   return SCC;
 
@@ -431,7 +431,7 @@ A.TPB = (function(_super) {
     return TPB.__super__.constructor.apply(this, arguments);
   }
 
-  TPB.SELECTOR = "#content a[href^='magnet:']";
+  TPB.SELECTOR = "a[href^='magnet:']";
 
   return TPB;
 
@@ -487,7 +487,7 @@ A.DAddicts = (function(_super) {
 
 })(A.Base);
 var inject;
-A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/sceneaccess\.org$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB], [/demonoid\.me$/, A.Demonoid], [/d-addicts\.com$/, A.DAddicts]];
+A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/sceneaccess\.eu$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB], [/demonoid\.me$/, A.Demonoid], [/d-addicts\.com$/, A.DAddicts]];
 
 GM_addStyle(A.STYLE);
 
