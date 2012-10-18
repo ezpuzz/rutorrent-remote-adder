@@ -33,8 +33,9 @@ Install
 -------
 
 1. install [scriptish](https://addons.mozilla.org/en-US/firefox/addon/scriptish)(Firefox), [tampermonkey](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)(Chrome)
-2. click Install at http://userscripts.org/scripts/show/125293
+2. click Install at http://userscripts.org/scripts/show/150375
 3. Configuration: click the 'saber-addtorrent configuration' button at the end of the website.
+
 
 Development
 ===========
