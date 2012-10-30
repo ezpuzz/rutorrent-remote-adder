@@ -45,6 +45,10 @@
 // @match        https://baconbits.org/torrents.php*
 // @match        https://baconbits.org/top10.php
 //
+// @match        https://stopthepress.es/torrents.php*
+// @match        https://stopthepress.es/collages.php*
+// @match        https://stopthepress.es/artist.php*
+//
 // @match        http://thepiratebay.se/browse/*
 // @match        http://thepiratebay.se/torrent/*
 //
@@ -52,6 +56,7 @@
 // @match        http://www.demonoid.me/top_torrents.php
 //
 // @include      http://*d-addicts.com/forum/torrents.php*
+// @include      http://*d-addicts.com/forum/viewtopic*
 // ==/UserScript==
 ;
 
@@ -187,11 +192,12 @@ A.Base = (function() {
     });
   };
 
-  Base.prototype.inject_rssimg = function(e, link) {
-    var i, rssimg, _i, _ref, _results;
+  Base.prototype.inject_rssimg = function(e, id) {
+    var i, link, rssimg, _i, _ref, _results;
     _results = [];
     for (i = _i = 0, _ref = A.Rc.counts; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-      link = this.build_link(link);
+      link = this.build_link(id);
+      pd(link);
       rssimg = this.create_ele(link, i);
       e.after(rssimg);
       _results.push(rssimg.before(this.constructor.SEPERATOR));
@@ -384,8 +390,6 @@ A.BIB = (function(_super) {
 
   __extends(BIB, _super);
 
-  BIB.SELECTOR = "#body a[title='Download']";
-
   BIB.SEPERATOR = "";
 
   function BIB() {
@@ -422,6 +426,18 @@ A.SCC = (function(_super) {
   return SCC;
 
 })(A.Base);
+
+A.STP = (function(_super) {
+
+  __extends(STP, _super);
+
+  function STP() {
+    return STP.__super__.constructor.apply(this, arguments);
+  }
+
+  return STP;
+
+})(A.Gazelle);
 
 A.TPB = (function(_super) {
 
@@ -487,7 +503,7 @@ A.DAddicts = (function(_super) {
 
 })(A.Base);
 var inject;
-A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/sceneaccess\.eu$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB], [/demonoid\.me$/, A.Demonoid], [/d-addicts\.com$/, A.DAddicts]];
+A.TRACKERS = [[/what\.cd$/, A.What], [/broadcasthe\.net$/, A.BTN], [/passthepopcorn\.me$/, A.PTP], [/sceneaccess\.eu$/, A.SCC], [/bibliotik\.org$/, A.BIB], [/animebyt\.es$/, A.AB], [/baconbits\.org$/, A.BB], [/thepiratebay\.se$/, A.TPB], [/demonoid\.me$/, A.Demonoid], [/d-addicts\.com$/, A.DAddicts], [/stopthepress\.es$/, A.STP]];
 
 GM_addStyle(A.STYLE);
 

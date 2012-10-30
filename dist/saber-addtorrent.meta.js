@@ -45,6 +45,10 @@
 // @match        https://baconbits.org/torrents.php*
 // @match        https://baconbits.org/top10.php
 //
+// @match        https://stopthepress.es/torrents.php*
+// @match        https://stopthepress.es/collages.php*
+// @match        https://stopthepress.es/artist.php*
+//
 // @match        http://thepiratebay.se/browse/*
 // @match        http://thepiratebay.se/torrent/*
 //
@@ -52,4 +56,5 @@
 // @match        http://www.demonoid.me/top_torrents.php
 //
 // @include      http://*d-addicts.com/forum/torrents.php*
+// @include      http://*d-addicts.com/forum/viewtopic*
 // ==/UserScript==

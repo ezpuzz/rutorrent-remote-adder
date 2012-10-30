@@ -45,6 +45,10 @@
 // @match        https://baconbits.org/torrents.php*
 // @match        https://baconbits.org/top10.php
 //
+// @match        https://stopthepress.es/torrents.php*
+// @match        https://stopthepress.es/collages.php*
+// @match        https://stopthepress.es/artist.php*
+//
 // @match        http://thepiratebay.se/browse/*
 // @match        http://thepiratebay.se/torrent/*
 //

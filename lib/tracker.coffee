@@ -16,9 +16,9 @@ class A.Base
     @scan (e, link) =>
       @inject_rssimg(e, link)
 
-  inject_rssimg: (e, link)->
+  inject_rssimg: (e, id)->
     for i in [0...A.Rc.counts]
-      link = @build_link(link)
+      link = @build_link(id)
       rssimg = @create_ele(link, i)
       e.after(rssimg)
       rssimg.before(@constructor.SEPERATOR)
@@ -120,7 +120,6 @@ class A.BB extends A.Gazelle
 
 # bliotik
 class A.BIB extends A.Gazelle
-  @SELECTOR = "#body a[title='Download']"
   @SEPERATOR = ""
 
   constructor: ->
@@ -138,6 +137,9 @@ class A.BIB extends A.Gazelle
 # SceneAccess.org
 class A.SCC extends A.Base
   @SELECTOR = "a[href^='download/']"
+
+# StopThePress
+class A.STP extends A.Gazelle
 
 # thepriatebay
 class A.TPB extends A.Base
@@ -163,4 +165,3 @@ class A.Demonoid extends A.Base
 
 class A.DAddicts extends A.Base
   @SELECTOR = "a[href^='magnet:']"
-
