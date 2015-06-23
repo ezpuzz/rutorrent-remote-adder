@@ -14,6 +14,10 @@
 // @grant	GM_setValue
 // @grant 	GM_log
 // @grant   GM_addStyle
+// @grant   GM_xmlhttpRequest
+//
+// @run-at  document-end
+// @noframes
 //
 // @include       *://*what.cd/torrents.php*
 // @include       *://*what.cd/collages.php*

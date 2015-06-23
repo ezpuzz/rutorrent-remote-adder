@@ -24,7 +24,7 @@ class A.Base
       rssimg.before(@constructor.SEPERATOR)
 
   fire: ->
-    $("img.rssimg").live "click.saber", (e) =>
+    $(document).on "click", "img.rssimg", (e) =>
       img = $(e.target)
       index = img.data("index")
       if img.data("checked") then checked="uncheck" else checked="check"
@@ -35,7 +35,7 @@ class A.Base
         img.attr "src", A.Rc.unchecked_icons[index]
 
       else
-        settings = 
+        settings =
           url: img.data("url")
           method: img.data("method")
           data: img.data("params")
@@ -48,10 +48,10 @@ class A.Base
               alert "saber-addtorrent failed."
 
         @request(settings)
-      
+
         img.data "checked", true
         img.attr "src", A.Rc.checked_icons[index]
-        
+
       false
 
   request: (settings) ->
@@ -60,13 +60,13 @@ class A.Base
     GM_xmlhttpRequest settings
 
   create_ele: (url, index)->
-    $ "<img>", 
+    $ "<img>",
       src: A.Rc.unchecked_icons[index]
       class: "rssimg"
-      data: 
+      data:
         checked: false
         index: index
-        url: "#{A.Rc.base_url}/php/addtorrent.php"  
+        url: "#{A.Rc.base_url}/php/addtorrent.php"
         method: "post"
         params: {label: A.Rc.labels[index], url: url}
 
