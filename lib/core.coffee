@@ -10,6 +10,10 @@
 // @require       https://gist.githubusercontent.com/kepkin/ff99090c410ab1b5c8fa/raw/065ffbc1de12d46b5492acb0214451ba6cc42655/waitForKeyElements.js
 // @require       https://openuserjs.org/src/libs/sizzle/GM_config.js
 //
+// @grant	GM_getValue
+// @grant	GM_setValue
+// @grant 	GM_log
+//
 // @include       *://*what.cd/torrents.php*
 // @include       *://*what.cd/collages.php*
 // @include       *://*what.cd/artist.php*
