@@ -53,7 +53,7 @@ Contributors
 
 @SaberSalv (original version saber-addtorrent)
 
-* [rutorrent](http://code.google.com/p/rutorrent): Yet another web front-end for rTorrent.
+* [rutorrent](https://github.com/Novik/ruTorrent): Yet another web front-end for rTorrent.
 
 Copyright
 ---------
