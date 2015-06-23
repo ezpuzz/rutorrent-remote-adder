@@ -13,6 +13,7 @@
 // @grant	GM_getValue
 // @grant	GM_setValue
 // @grant 	GM_log
+// @grant   GM_addStyle
 //
 // @include       *://*what.cd/torrents.php*
 // @include       *://*what.cd/collages.php*
