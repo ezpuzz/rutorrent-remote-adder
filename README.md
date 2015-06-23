@@ -1,4 +1,4 @@
-rutorrent-remote-adder, add a torrent file to rutorrent from torrent site.
+rutorrent-remote-adder, add a torrent file to rutorrent from torrent site.  [![Build Status](https://travis-ci.org/ezpuzz/rutorrent-remote-adder.svg?branch=master)](https://travis-ci.org/ezpuzz/rutorrent-remote-adder)
 ================================================================
 
 This is *was* part of the [Saber](https://github.com/SaberSalv/saber) project, but you can use this alone.
@@ -19,7 +19,7 @@ Getting started
 
 It adds two icons near the download link of the torrents, after click, it'll send the torrent file to rutorrent with label set in your configuration.
 
-![Alt text](https://raw.github.com/ezpuzze/rutorrent-remote-adder/master/snapshot.jpg "snapshot")
+![Alt text](https://raw.githubusercontent.com/ezpuzz/rutorrent-remote-adder/master/snapshot.jpg "snapshot")
 
 Development
 ===========
