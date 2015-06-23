@@ -7,9 +7,9 @@
 // @updateURL     https://raw.github.com/SaberSalv/saber-addtorrent/master/dist/saber-addtorrent.meta.js
 // @icon          http://i.imgur.com/xEjOM.png
 //
-// @require       https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
-// @require       https://raw.github.com/gist/2625891/waitForKeyElements.js
-// @require       https://raw.github.com/sizzlemctwizzle/GM_config/master/gm_config.js
+// @require       https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js
+// @require       https://gist.githubusercontent.com/kepkin/ff99090c410ab1b5c8fa/raw/065ffbc1de12d46b5492acb0214451ba6cc42655/waitForKeyElements.js
+// @require       https://openuserjs.org/src/libs/sizzle/GM_config.js
 //
 // @include       *://*what.cd/torrents.php*
 // @include       *://*what.cd/collages.php*
